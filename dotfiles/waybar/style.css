@@ -1,0 +1,246 @@
+* {
+  border: none;
+  border-radius: 0;
+  min-height: 0;
+  font-family: 'JetBrainsMono Nerd Font';
+  font-size: 12px;
+}
+
+window#waybar {
+  background: rgba(0, 0, 0, 0.55);
+  color: #bebebe;
+  border-radius: 12px;
+  margin: 6px 8px;
+  padding: 0 6px;
+}
+
+#workspaces button {
+  padding: 0 6px;
+  margin: 3px 1.5px;
+  min-width: 9px;
+  color: #666;
+  border-radius: 6px;
+}
+
+#workspaces button.active {
+  color: #eaeaea;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#workspaces button:hover {
+  color: #eaeaea;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+#workspaces button.empty {
+  opacity: 0.4;
+}
+
+#workspaces button.urgent {
+  color: #eaeaea;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+#clock {
+  margin-left: 8.75px;
+  color: #bebebe;
+}
+
+#clock:hover {
+  color: #eaeaea;
+}
+
+#custom-weather {
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+  min-width: 14px;
+  color: #bebebe;
+}
+
+#custom-weather.unavailable {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+#cpu,
+#battery,
+#pulseaudio,
+#custom-omarchy,
+#custom-update {
+  min-width: 12px;
+  margin: 0 7.5px;
+  color: #bebebe;
+}
+
+#cpu:hover,
+#battery:hover,
+#pulseaudio:hover,
+#network:hover,
+#bluetooth:hover {
+  color: #eaeaea;
+}
+
+#battery.warning {
+  color: #FFC107;
+}
+
+#battery.critical {
+  color: #eaeaea;
+}
+
+#network {
+  margin-right: 13px;
+  color: #bebebe;
+}
+
+#bluetooth {
+  margin-right: 17px;
+  color: #bebebe;
+}
+
+#tray {
+  margin-right: 16px;
+}
+
+#custom-expand-icon {
+  margin-right: 18px;
+  color: #bebebe;
+}
+
+#custom-screenrecording-indicator,
+#custom-idle-indicator,
+#custom-notification-silencing-indicator {
+  min-width: 12px;
+  margin-left: 5px;
+  margin-right: 0;
+  font-size: 10px;
+  padding-bottom: 1px;
+}
+
+#custom-screenrecording-indicator.active,
+#custom-idle-indicator.active,
+#custom-notification-silencing-indicator.active {
+  color: #eaeaea;
+}
+
+#custom-voxtype {
+  min-width: 12px;
+  margin: 0 0 0 7.5px;
+  color: #bebebe;
+}
+
+#custom-voxtype.recording {
+  color: #eaeaea;
+}
+
+#custom-update {
+  font-size: 10px;
+  color: #bebebe;
+}
+
+#custom-omarchy {
+  color: #bebebe;
+}
+
+tooltip {
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 4px;
+}
+
+tooltip label {
+  color: #bebebe;
+}
+
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+  margin-right: 8px;
+}
+
+.hidden {
+  opacity: 0;
+}
+
+/* Vertical layout */
+.left .modules-left, .right .modules-left { margin: 8px 0 0 0; }
+.left .modules-right, .right .modules-right { margin: 0 0 8px 0; }
+
+.left #workspaces button, .right #workspaces button {
+  padding: 6px 0;
+  margin: 1.5px 0;
+  border-radius: 6px;
+}
+
+.left #cpu, .right #cpu,
+.left #battery, .right #battery,
+.left #pulseaudio, .right #pulseaudio,
+.left #custom-omarchy, .right #custom-omarchy,
+.left #custom-update, .right #custom-update {
+  margin: 1.5px 0;
+  padding: 6px 0;
+  min-width: 0;
+  min-height: 12px;
+}
+
+.left #tray, .right #tray { margin: 0 0 16px 0; }
+.left #bluetooth, .right #bluetooth { margin: 1.5px 0; padding: 6px 0; min-height: 12px; }
+.left #network, .right #network { margin: 1.5px 0; padding: 6px 0; min-height: 12px; }
+.left #custom-expand-icon, .right #custom-expand-icon { margin: 1.5px 0; padding: 6px 0; min-height: 12px; }
+.left #clock, .right #clock { margin: 8.75px 0 0 0; }
+.left #custom-weather, .right #custom-weather { margin: 1.5px 0; padding: 6px 0; min-height: 12px; min-width: 14px; margin-right: 4px; }
+
+.left #custom-screenrecording-indicator, .right #custom-screenrecording-indicator,
+.left #custom-idle-indicator, .right #custom-idle-indicator,
+.left #custom-notification-silencing-indicator, .right #custom-notification-silencing-indicator {
+  margin: 5px 0 0 0;
+  min-width: 0;
+  min-height: 12px;
+}
+
+.left #custom-voxtype, .right #custom-voxtype { margin: 7.5px 0 0 0; min-width: 0; min-height: 12px; }
+
+#custom-expand-icon.vertical,
+.left #custom-expand-icon.horizontal,
+.right #custom-expand-icon.horizontal {
+  opacity: 0;
+  font-size: 0;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.left #custom-expand-icon.vertical,
+.right #custom-expand-icon.vertical {
+  opacity: 1;
+  font-size: inherit;
+  min-width: 0;
+  min-height: 12px;
+  margin: 1.5px 0;
+  padding: 6px 0;
+}
+
+#clock.vertical,
+.left #clock.horizontal,
+.right #clock.horizontal {
+  opacity: 0;
+  font-size: 0;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.left #clock.vertical,
+.right #clock.vertical {
+  opacity: 1;
+  font-size: inherit;
+  min-width: 0;
+  min-height: 12px;
+  margin: 8.75px 0 0 0;
+}

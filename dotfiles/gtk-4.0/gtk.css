@@ -1,0 +1,35 @@
+@define-color accent #c72a2a;
+@define-color fg #eaeaea;
+
+entry {
+  caret-color: @fg;
+  border-radius: 6px;
+  min-height: 30px;
+}
+
+entry:focus {
+  border-color: alpha(@accent, 0.5);
+}
+
+button {
+  border-radius: 6px;
+  min-height: 28px;
+}
+
+scrollbar slider {
+  border-radius: 4px;
+  min-width: 6px;
+  min-height: 30px;
+}
+
+progressbar trough, progressbar progress {
+  border-radius: 4px;
+}
+
+selection {
+  background-color: alpha(@accent, 0.25);
+}
+
+textview text, text {
+  caret-color: @fg;
+}

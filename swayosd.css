@@ -1,0 +1,19 @@
+window {
+    background-color: rgba(18, 18, 18, 0.8);
+    border-radius: 12px;
+    border: 1px solid #808080;
+}
+
+label {
+    color: #bebebe;
+}
+
+levelbar block {
+    background-color: #808080;
+    border-radius: 4px;
+}
+
+levelbar trough {
+    background-color: #525252;
+    border-radius: 4px;
+}
