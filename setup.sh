@@ -12,6 +12,11 @@ echo "Setting up Theme OmarchyOS companion configs..."
 mkdir -p ~/.config/waybar
 cp "$DOTFILES/waybar/style.css" ~/.config/waybar/
 
+# Terminals
+cp "$DOTFILES/kitty.conf" ~/.config/kitty/ 2>/dev/null || true
+cp "$DOTFILES/alacritty.toml" ~/.config/alacritty/ 2>/dev/null || true
+cp "$DOTFILES/config" ~/.config/ghostty/ 2>/dev/null || true
+
 # Hyprland
 mkdir -p ~/.config/hypr
 cp "$DOTFILES/hypr/looknfeel.lua" ~/.config/hypr/
