@@ -1,11 +1,11 @@
-# Oni Theme
+# Theme OmarchyOS
 
 Monochrome dark theme for Omarchy. Clean, modern — matching Bibata Modern Classic.
 
 ## Quick Install (colors + wallpaper only)
 
 ```bash
-omarchy theme install https://github.com/<tu-usuario>/omarchy-oni-theme.git
+omarchy theme install https://github.com/WilberHernan/Theme-OmarchyOS.git
 ```
 
 ## Full Setup (includes all companion configs)
@@ -13,12 +13,12 @@ omarchy theme install https://github.com/<tu-usuario>/omarchy-oni-theme.git
 After installing the theme:
 
 ```bash
-~/.config/omarchy/themes/oni/setup.sh
+~/.config/omarchy/themes/theme-omarchyos/setup.sh
 ```
 
 This copies: waybar style (rounded, transparent), window opacity, GTK cursor/caret, GTK settings, custom walker theme, neofetch tengu mask, fish greeting.
 
-> Run `omarchy theme set oni` and then `~/.config/omarchy/themes/oni/setup.sh` on any fresh Omarchy install to get the exact same look.
+> Run `omarchy theme set theme-omarchyos` and then `~/.config/omarchy/themes/theme-omarchyos/setup.sh` on any fresh Omarchy install to get the exact same look.
 
 ## What's included
 
@@ -35,7 +35,7 @@ This copies: waybar style (rounded, transparent), window opacity, GTK cursor/car
 - hypr/envs.lua — Bibata cursor, hyprcursor disabled
 - gtk-3.0/ — cursor theme, icons, GTK styling (rounded inputs, visible caret)
 - gtk-4.0/gtk.css — matching GTK4 caret styling
-- walker/ — transparent/no-card launcher, rounded selection
+- walker/ — centered launcher, font 13px, subtext on select
 - neofetch/ — tengu oni-mask ASCII art, clean info display
 - fish/config.fish — neofetch on terminal open
 

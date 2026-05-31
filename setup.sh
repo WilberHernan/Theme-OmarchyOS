@@ -6,7 +6,7 @@ set -e
 ONI_DIR="${0%/*}"
 DOTFILES="$ONI_DIR/dotfiles"
 
-echo "Setting up Oni theme companion configs..."
+echo "Setting up Theme OmarchyOS companion configs..."
 
 # Waybar
 mkdir -p ~/.config/waybar
