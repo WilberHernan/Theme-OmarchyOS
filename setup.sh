@@ -42,6 +42,9 @@ cp "$DOTFILES/neofetch/config" ~/.config/neofetch/
 mkdir -p ~/.config/fish
 cp "$DOTFILES/fish/config.fish" ~/.config/fish/
 
+# Set Ghostty as default terminal
+omarchy default terminal ghostty 2>/dev/null || true
+
 # Apply GTK settings
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 gsettings set org.gnome.desktop.interface icon-theme "Yaru-red-dark"
