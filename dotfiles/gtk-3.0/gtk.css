@@ -16,7 +16,7 @@ entry {
   border-radius: 6px;
   min-height: 30px;
   caret-color: @fg;
-  caret-size: 2px;
+  caret-size: 3px;
 }
 
 entry:focus {
