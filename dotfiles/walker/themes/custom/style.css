@@ -1,0 +1,138 @@
+@import "../../../omarchy/current/theme/walker.css";
+@import "../../../../../.local/state/omarchy/toggles/walker.css";
+
+* {
+  all: unset;
+}
+
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 13px;
+  color: @text;
+}
+
+scrollbar {
+  opacity: 0;
+}
+
+.normal-icons {
+  -gtk-icon-size: 16px;
+}
+
+.large-icons {
+  -gtk-icon-size: 32px;
+}
+
+.box-wrapper {
+  background: transparent;
+  padding: 80px 300px;
+  border: none;
+}
+
+.box {
+  background: rgba(18, 18, 18, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 8px 0;
+  min-width: 400px;
+}
+
+.search-container {
+  background: transparent;
+  padding: 8px 12px 4px;
+}
+
+.input {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 8px 12px;
+  min-height: 20px;
+  caret-color: @text;
+}
+
+.input placeholder {
+  opacity: 0.4;
+}
+
+.input:focus,
+.input:active {
+  box-shadow: none;
+  outline: none;
+}
+
+.content-container {
+  padding: 0 4px;
+}
+
+.placeholder {
+  padding: 16px;
+  color: @text;
+  opacity: 0.4;
+}
+
+.list {
+  padding: 0;
+}
+
+child:selected {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  margin: 0 4px;
+}
+
+child:selected .item-box * {
+  color: @text;
+}
+
+child:selected .item-subtext {
+  font-size: 11px;
+  opacity: 0.6;
+  min-height: 16px;
+  padding: 0;
+  margin: 0;
+}
+
+.item-box {
+  padding: 6px 8px;
+}
+
+.item-text-box {
+  all: unset;
+  padding: 2px 0;
+}
+
+.item-text {
+  font-size: 13px;
+}
+
+.item-subtext {
+  font-size: 0px;
+  min-height: 0px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.item-image {
+  margin-right: 8px;
+  -gtk-icon-transform: scale(0.9);
+}
+
+.current {
+  font-style: italic;
+}
+
+.keybind-hints {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.keybind-hints label {
+  font-size: 11px;
+  opacity: 0.5;
+  padding: 4px 12px 8px;
+}
+
+.preview {
+}

@@ -1,0 +1,70 @@
+@define-color accent #c72a2a;
+@define-color bg_dark #1a1a1a;
+@define-color bg_window #222222;
+@define-color fg #eaeaea;
+
+.window-frame, .window-frame:backdrop {
+  border-radius: 8px;
+}
+
+button {
+  border-radius: 6px;
+  min-height: 28px;
+}
+
+entry {
+  border-radius: 6px;
+  min-height: 30px;
+  caret-color: @fg;
+  caret-size: 2px;
+}
+
+entry:focus {
+  border-color: alpha(@accent, 0.5);
+}
+
+combobox button {
+  border-radius: 6px;
+}
+
+spinbutton button {
+  border-radius: 6px;
+}
+
+scrollbar slider {
+  border-radius: 4px;
+  min-width: 6px;
+  min-height: 30px;
+}
+
+scrollbar.vertical slider {
+  min-width: 6px;
+}
+
+progressbar trough {
+  border-radius: 4px;
+}
+
+progressbar progress {
+  border-radius: 4px;
+}
+
+treeview.view, treeview.view button {
+  border-radius: 4px;
+}
+
+textview text {
+  caret-color: @fg;
+}
+
+text {
+  caret-color: @fg;
+}
+
+selection {
+  background-color: alpha(@accent, 0.25);
+}
+
+cursor {
+  color: @fg;
+}
