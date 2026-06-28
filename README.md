@@ -48,7 +48,7 @@ omarchy theme set theme-omarchyos
 | `uwsm/env` | Cursor envs persistentes via UWSM |
 | `waybar/style.css` | Flotante, 12px radius, 55% bg |
 | `gtk-3.0/settings.ini` | Adwaita-dark, Yaru-red-dark, Oxygen Neon White 20 |
-| `icons/oxy-neon-white/` | Cursor incluido en el theme, se instala solo |
+| `icons/oxy-neon-white/` | Cursor recolorizado (gris mate #c0c0c0), incluye SVGs fuente |
 | `gtk-3.0/gtk.css` | caret-color, inputs redondeados |
 | `gtk-4.0/gtk.css` | caret-color |
 | `walker/config.toml` | Centrado, padding 80x300 |
