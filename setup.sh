@@ -19,8 +19,13 @@ cp "$DOTFILES/config" ~/.config/ghostty/ 2>/dev/null || true
 
 # Hyprland
 mkdir -p ~/.config/hypr
+cp "$DOTFILES/hypr/hyprland.lua" ~/.config/hypr/
 cp "$DOTFILES/hypr/looknfeel.lua" ~/.config/hypr/
 cp "$DOTFILES/hypr/envs.lua" ~/.config/hypr/
+
+# UWSM env (cursor vars persistent across logins)
+mkdir -p ~/.config/uwsm
+cp "$DOTFILES/uwsm/env" ~/.config/uwsm/
 
 # GTK
 mkdir -p ~/.config/gtk-3.0 ~/.config/gtk-4.0
