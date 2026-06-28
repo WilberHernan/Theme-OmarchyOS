@@ -42,9 +42,8 @@ mkdir -p ~/.config/walker/themes/custom
 cp "$DOTFILES/walker/config.toml" ~/.config/walker/
 cp "$DOTFILES/walker/themes/custom/style.css" ~/.config/walker/themes/custom/
 
-# Neofetch
+# Neofetch (specs only)
 mkdir -p ~/.config/neofetch
-cp "$DOTFILES/neofetch/tengu_mask.txt" ~/.config/neofetch/
 cp "$DOTFILES/neofetch/config" ~/.config/neofetch/
 
 # Fish

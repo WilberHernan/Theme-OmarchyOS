@@ -33,7 +33,7 @@ omarchy theme set theme-omarchyos
 - Copia configs de terminales (Alacritty, Kitty, Ghostty)
 - Copia `gtk-3.0/` y `gtk-4.0/` (tema, iconos, cursor, inputs redondeados)
 - Copia `walker/` (centrado, 13px, subtexto al seleccionar)
-- Copia `neofetch/` (arte ASCII tengu oni-mask)
+- Copia `neofetch/` (config con specs)
 - Copia `fish/config.fish` (neofetch al abrir terminal)
 - Setea Ghostty como terminal default
 - Aplica `gsettings` (iconos Yaru-red-dark, cursor Bibata 20, fuente JetBrainsMono)
@@ -53,7 +53,6 @@ omarchy theme set theme-omarchyos
 | `gtk-4.0/gtk.css` | caret-color |
 | `walker/config.toml` | Centrado, padding 80x300 |
 | `walker/themes/custom/style.css` | 13px font, subtext en select, 84% box |
-| `neofetch/tengu_mask.txt` | Oni-mask braille art |
 | `neofetch/config` | Info limpia |
 | `fish/config.fish` | neofetch al abrir terminal |
 
