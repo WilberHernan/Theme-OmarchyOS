@@ -1,51 +1,59 @@
 # Theme OmarchyOS
 
-Monochrome dark theme for Omarchy. Clean, modern — matching Bibata Modern Classic.
+Monochrome dark theme for Omarchy. Clean, modern, Bibata cursor.
 
-## Quick Install (colors + wallpaper only)
+## Dependencies
+
+Install these once before the theme:
+
+```bash
+yay -S bibata-cursor-theme yaru-icon-theme nerd-fonts-jetbrains-mono
+sudo pacman -S ghostty
+```
+
+> `Adwaita-dark` viene con `gtk-engine`, ya debería estar instalado en Omarchy.
+
+## Install
 
 ```bash
 omarchy theme install https://github.com/WilberHernan/Theme-OmarchyOS.git
-```
-
-## Full Setup (includes all companion configs)
-
-After installing the theme:
-
-```bash
+omarchy theme set theme-omarchyos
 ~/.config/omarchy/themes/theme-omarchyos/setup.sh
 ```
 
-This copies: waybar style (rounded, transparent), Hyprland animations + rounding, Bibata cursor + GTK styling, custom walker theme, neofetch tengu mask, fish greeting.
+**Cerrar sesión y volver a entrar** para que todo tome efecto.
 
-> Run `omarchy theme set theme-omarchyos` and then `~/.config/omarchy/themes/theme-omarchyos/setup.sh` on any fresh Omarchy install to get the exact same look.
+## What `setup.sh` does
 
-## What's included
+- Copia `hyprland.lua` (carga `envs.lua` con cursor Bibata)
+- Copia `looknfeel.lua` (11 animaciones spring/bezier, rounding 8)
+- Copia `uwsm/env` (variables de cursor persistentes entre sesiones)
+- Copia `waybar/style.css` (12px radius, 55% transparente, monocromo)
+- Copia configs de terminales (Alacritty, Kitty, Ghostty)
+- Copia `gtk-3.0/` y `gtk-4.0/` (tema, iconos, cursor, inputs redondeados)
+- Copia `walker/` (centrado, 13px, subtexto al seleccionar)
+- Copia `neofetch/` (arte ASCII tengu oni-mask)
+- Copia `fish/config.fish` (neofetch al abrir terminal)
+- Setea Ghostty como terminal default
+- Aplica `gsettings` (iconos Yaru-red-dark, cursor Bibata 20, fuente JetBrainsMono)
 
-**Theme (colors, wallpapers):**
-- Colors: monochrome grayscale palette
-- Terminals: Alacritty, Kitty, Ghostty
-- Icons: Yaru-red-dark
-- Waybar, Walker, Hyprland, Hyprlock, Mako, SwayOSD colors
-- btop, Neovim, VSCode themes
+## Dotfiles
 
-**Dotfiles (companion configs in `dotfiles/`):**
-- waybar/style.css — rounded, transparent waybar (12px border radius, 55% background)
-- hypr/looknfeel.lua — 11 animations (spring/bezier curves), rounding 8
-- hypr/envs.lua — Bibata cursor, hyprcursor disabled
-- gtk-3.0/ — cursor theme, icons, GTK styling (rounded inputs, visible caret)
-- gtk-4.0/gtk.css — matching GTK4 caret styling
-- walker/ — centered launcher, font 13px, subtext on select
-- neofetch/ — tengu oni-mask ASCII art, clean info display
-- fish/config.fish — neofetch on terminal open
-
-## Cursor
-
-Requires [Bibata-Modern-Classic](https://github.com/ful1e5/Bibata_Cursor) installed:
-
-```bash
-yay -S bibata-cursor-theme
-```
+| Archivo | Qué hace |
+|---|---|
+| `hypr/hyprland.lua` | Carga módulos + `require("hypr.envs")` seguro |
+| `hypr/envs.lua` | `XCURSOR_THEME`, `HYPRCURSOR_THEME`, tamaño 20 |
+| `hypr/looknfeel.lua` | 4 curvas, 11 animaciones, rounding 8 |
+| `uwsm/env` | Cursor envs persistentes via UWSM |
+| `waybar/style.css` | Flotante, 12px radius, 55% bg |
+| `gtk-3.0/settings.ini` | Adwaita-dark, Yaru-red-dark, Bibata 20 |
+| `gtk-3.0/gtk.css` | caret-color, inputs redondeados |
+| `gtk-4.0/gtk.css` | caret-color |
+| `walker/config.toml` | Centrado, padding 80x300 |
+| `walker/themes/custom/style.css` | 13px font, subtext en select, 84% box |
+| `neofetch/tengu_mask.txt` | Oni-mask braille art |
+| `neofetch/config` | Info limpia |
+| `fish/config.fish` | neofetch al abrir terminal |
 
 ## Credits
 
