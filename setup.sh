@@ -55,6 +55,10 @@ cp "$DOTFILES/fish/config.fish" ~/.config/fish/
 # Set Ghostty as default terminal
 omarchy default terminal ghostty 2>/dev/null || true
 
+# Cursor fallback (for apps outside Hyprland)
+mkdir -p ~/.icons/default
+cp "$DOTFILES/icons/default/index.theme" ~/.icons/default/
+
 # Apply GTK settings
 gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
 gsettings set org.gnome.desktop.interface icon-theme "Yaru-red-dark"
