@@ -14,7 +14,13 @@ require("default.hypr.omarchy")
 require("hypr.monitors")
 require("hypr.input")
 require("hypr.bindings")
-require("hypr.envs")
+-- Load envs if present (cursor theme, etc.)
+local envs_path = os.getenv("HOME") .. "/.config/hypr/envs.lua"
+local envs = io.open(envs_path, "r")
+if envs then
+  envs:close()
+  require("hypr.envs")
+end
 require("hypr.looknfeel")
 require("hypr.autostart")
 
