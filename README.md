@@ -47,7 +47,7 @@ omarchy theme set theme-omarchyos
 | `hypr/looknfeel.lua` | 4 curvas, 11 animaciones, rounding 8 |
 | `uwsm/env` | Cursor envs persistentes via UWSM |
 | `waybar/style.css` | Flotante, 12px radius, 55% bg |
-| `gtk-3.0/settings.ini` | Adwaita-dark, Yaru-red-dark, Oxygen Neon White 20 |
+| `gtk-3.0/settings.ini` | Adwaita-dark, Yaru-red-dark, Bibata 20 |
 | `icons/Bibata-Modern-Classic/` | Cursor Bibata Modern Classic incluido en el theme |
 | `gtk-3.0/gtk.css` | caret-color, inputs redondeados |
 | `gtk-4.0/gtk.css` | caret-color |

@@ -1,6 +1,17 @@
 hl.config({
   decoration = {
     rounding = 8,
+    active_opacity = 0.84,
+    inactive_opacity = 0.72,
+    dim_inactive = true,
+    dim_strength = 0.15,
+  },
+})
+
+hl.config({
+  cursor = {
+    enable_hyprcursor = false,
+    hide_on_key_press = true,
   },
 })
 
