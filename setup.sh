@@ -8,6 +8,16 @@ DOTFILES="$ONI_DIR/dotfiles"
 
 echo "Setting up Theme OmarchyOS companion configs..."
 
+# Install Bibata cursor if missing
+if ! ls /usr/share/icons/Bibata-Modern-Classic/cursors/ &>/dev/null; then
+  echo "Installing Bibata-Modern-Classic cursor..."
+  if command -v yay &>/dev/null; then
+    yay -S bibata-cursor-theme --noconfirm 2>/dev/null || true
+  elif command -v pacman &>/dev/null; then
+    sudo pacman -S bibata-cursor-theme --noconfirm 2>/dev/null || true
+  fi
+fi
+
 # Waybar
 mkdir -p ~/.config/waybar
 cp "$DOTFILES/waybar/style.css" ~/.config/waybar/
