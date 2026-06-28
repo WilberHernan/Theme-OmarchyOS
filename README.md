@@ -11,7 +11,7 @@ yay -S yaru-icon-theme nerd-fonts-jetbrains-mono
 sudo pacman -S ghostty
 ```
 
-> El cursor **Oxygen Neon White** ya viene incluido en el theme (no necesita instalarse aparte).
+> El cursor **Bibata-Modern-Classic** ya viene incluido en el theme (no necesita instalarse aparte).
 > `Adwaita-dark` viene con `gtk-engine`, ya debería estar instalado en Omarchy.
 
 ## Install
@@ -48,7 +48,7 @@ omarchy theme set theme-omarchyos
 | `uwsm/env` | Cursor envs persistentes via UWSM |
 | `waybar/style.css` | Flotante, 12px radius, 55% bg |
 | `gtk-3.0/settings.ini` | Adwaita-dark, Yaru-red-dark, Oxygen Neon White 20 |
-| `icons/oxy-neon-white/` | Cursor recolorizado (gris mate #c0c0c0), incluye SVGs fuente |
+| `icons/Bibata-Modern-Classic/` | Cursor Bibata Modern Classic incluido en el theme |
 | `gtk-3.0/gtk.css` | caret-color, inputs redondeados |
 | `gtk-4.0/gtk.css` | caret-color |
 | `walker/config.toml` | Centrado, padding 80x300 |

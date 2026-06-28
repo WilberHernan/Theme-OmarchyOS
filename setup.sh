@@ -8,9 +8,9 @@ DOTFILES="$ONI_DIR/dotfiles"
 
 echo "Setting up Theme OmarchyOS companion configs..."
 
-# Cursor theme (self-contained, ships with the theme)
+# Cursor theme (Bibata-Modern-Classic, ships with the theme)
 mkdir -p ~/.icons
-cp -r "$DOTFILES/icons/oxy-neon-white" ~/.icons/
+cp -r "$DOTFILES/icons/Bibata-Modern-Classic" ~/.icons/
 
 # Waybar
 mkdir -p ~/.config/waybar
