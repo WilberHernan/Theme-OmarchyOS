@@ -4,10 +4,10 @@
 export OMARCHY_PATH=$HOME/.local/share/omarchy
 export PATH=$OMARCHY_PATH/bin:$PATH:$HOME/.local/bin
 
-# Cursor theme (oxy-neon-white)
-export XCURSOR_THEME=oxy-neon-white
+# Cursor theme (Bibata-Modern-Classic)
+export XCURSOR_THEME=Bibata-Modern-Classic
 export XCURSOR_SIZE=20
-export HYPRCURSOR_THEME=oxy-neon-white
+export HYPRCURSOR_THEME=Bibata-Modern-Classic
 export HYPRCURSOR_SIZE=20
 
 # Set default terminal and editor
