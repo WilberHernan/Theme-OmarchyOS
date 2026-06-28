@@ -7,10 +7,11 @@ Monochrome dark theme for Omarchy. Clean, modern, Bibata cursor.
 Install these once before the theme:
 
 ```bash
-yay -S bibata-cursor-theme yaru-icon-theme nerd-fonts-jetbrains-mono
+yay -S yaru-icon-theme nerd-fonts-jetbrains-mono
 sudo pacman -S ghostty
 ```
 
+> El cursor **Oxygen Neon White** ya viene incluido en el theme (no necesita instalarse aparte).
 > `Adwaita-dark` viene con `gtk-engine`, ya debería estar instalado en Omarchy.
 
 ## Install
@@ -46,7 +47,8 @@ omarchy theme set theme-omarchyos
 | `hypr/looknfeel.lua` | 4 curvas, 11 animaciones, rounding 8 |
 | `uwsm/env` | Cursor envs persistentes via UWSM |
 | `waybar/style.css` | Flotante, 12px radius, 55% bg |
-| `gtk-3.0/settings.ini` | Adwaita-dark, Yaru-red-dark, Bibata 20 |
+| `gtk-3.0/settings.ini` | Adwaita-dark, Yaru-red-dark, Oxygen Neon White 20 |
+| `icons/oxy-neon-white/` | Cursor incluido en el theme, se instala solo |
 | `gtk-3.0/gtk.css` | caret-color, inputs redondeados |
 | `gtk-4.0/gtk.css` | caret-color |
 | `walker/config.toml` | Centrado, padding 80x300 |
