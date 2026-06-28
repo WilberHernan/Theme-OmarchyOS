@@ -42,9 +42,8 @@ mkdir -p ~/.config/walker/themes/custom
 cp "$DOTFILES/walker/config.toml" ~/.config/walker/
 cp "$DOTFILES/walker/themes/custom/style.css" ~/.config/walker/themes/custom/
 
-# Neofetch (barroco ASCII art + specs)
+# Neofetch (specs only)
 mkdir -p ~/.config/neofetch
-cp "$DOTFILES/neofetch/barroco.txt" ~/.config/neofetch/
 cp "$DOTFILES/neofetch/config" ~/.config/neofetch/
 
 # Fish
