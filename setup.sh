@@ -1,9 +1,9 @@
 #!/bin/bash
-# Oni Theme — full setup script
-# Run this after `omarchy theme set oni` to apply companion configs.
+# Theme OmarchyOS — full setup script
+# Run this after `omarchy theme install` + `omarchy theme set theme-omarchyos`
 
 set -e
-ONI_DIR="${0%/*}"
+ONI_DIR="$(cd "${0%/*}" && pwd)"
 DOTFILES="$ONI_DIR/dotfiles"
 
 echo "Setting up Theme OmarchyOS companion configs..."
@@ -12,7 +12,7 @@ echo "Setting up Theme OmarchyOS companion configs..."
 mkdir -p ~/.config/waybar
 cp "$DOTFILES/waybar/style.css" ~/.config/waybar/
 
-# Terminals
+# Terminals (skip if dir missing)
 cp "$DOTFILES/kitty.conf" ~/.config/kitty/ 2>/dev/null || true
 cp "$DOTFILES/alacritty.toml" ~/.config/alacritty/ 2>/dev/null || true
 cp "$DOTFILES/config" ~/.config/ghostty/ 2>/dev/null || true
@@ -50,16 +50,18 @@ cp "$DOTFILES/fish/config.fish" ~/.config/fish/
 # Set Ghostty as default terminal
 omarchy default terminal ghostty 2>/dev/null || true
 
-# Apply GTK settings
-gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark"
-gsettings set org.gnome.desktop.interface icon-theme "Yaru-red-dark"
-gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Classic"
-gsettings set org.gnome.desktop.interface cursor-size 20
-gsettings set org.gnome.desktop.interface monospace-font-name "JetBrainsMono Nerd Font 11"
-gsettings set org.gnome.desktop.interface font-name "Adwaita Sans 11"
-gsettings set org.gnome.desktop.wm.preferences theme "Adwaita-dark"
+# Apply GTK settings (safe: no crash if gsettings unavailable)
+if command -v gsettings &>/dev/null; then
+  gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Classic" || true
+  gsettings set org.gnome.desktop.interface cursor-size 20 || true
+  gsettings set org.gnome.desktop.interface icon-theme "Yaru-red-dark" || true
+  gsettings set org.gnome.desktop.interface gtk-theme "Adwaita-dark" || true
+  gsettings set org.gnome.desktop.interface monospace-font-name "JetBrainsMono Nerd Font 11" || true
+  gsettings set org.gnome.desktop.interface font-name "Adwaita Sans 11" || true
+  gsettings set org.gnome.desktop.wm.preferences theme "Adwaita-dark" || true
+fi
 
-# Restart services
-killall -SIGUSR2 waybar 2>/dev/null || (killall waybar 2>/dev/null; sleep 0.5; waybar &)
+# Restart waybar
+killall -SIGUSR2 waybar 2>/dev/null || (killall waybar 2>/dev/null; sleep 0.5; nohup waybar &>/dev/null &)
 
 echo "Done! Log out and back in for full effect."
