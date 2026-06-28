@@ -42,8 +42,9 @@ mkdir -p ~/.config/walker/themes/custom
 cp "$DOTFILES/walker/config.toml" ~/.config/walker/
 cp "$DOTFILES/walker/themes/custom/style.css" ~/.config/walker/themes/custom/
 
-#  (specs only)
+#  ( ASCII art + specs)
 mkdir -p ~/.config/
+cp "$DOTFILES//.txt" ~/.config/art/
 cp "$DOTFILES//config" ~/.config/art/
 
 # Fish

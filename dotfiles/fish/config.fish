@@ -1,6 +1,6 @@
 source /usr/share/cachyos-fish-config/cachyos-config.fish
 
-# overwrite greeting -  specs only (no logo)
+# overwrite greeting -  with  ASCII
 function fish_greeting
-     --off
+     --ascii ~/.config/art/.txt
 end
