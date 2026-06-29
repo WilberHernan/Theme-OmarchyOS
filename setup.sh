@@ -33,6 +33,9 @@ mkdir -p ~/.local/share/fonts
 cp "$DOTFILES/fonts/Gunplay_Regular.otf" ~/.local/share/fonts/
 fc-cache -f
 
+# Custom lock script (15s display-off delay)
+cp "$DOTFILES/scripts/omarchy-system-lock" ~/.local/share/omarchy/bin/omarchy-system-lock
+
 # UWSM env (cursor vars persistent across logins)
 mkdir -p ~/.config/uwsm
 cp "$DOTFILES/uwsm/env" ~/.config/uwsm/
