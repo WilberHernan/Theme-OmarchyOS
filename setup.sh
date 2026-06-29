@@ -26,6 +26,12 @@ mkdir -p ~/.config/hypr
 cp "$DOTFILES/hypr/hyprland.lua" ~/.config/hypr/
 cp "$DOTFILES/hypr/looknfeel.lua" ~/.config/hypr/
 cp "$DOTFILES/hypr/envs.lua" ~/.config/hypr/
+cp "$DOTFILES/hypr/hyprlock.conf" ~/.config/hypr/
+
+# Gunplay font (for hyprlock clock)
+mkdir -p ~/.local/share/fonts
+cp "$DOTFILES/fonts/Gunplay_Regular.otf" ~/.local/share/fonts/
+fc-cache -f
 
 # UWSM env (cursor vars persistent across logins)
 mkdir -p ~/.config/uwsm
