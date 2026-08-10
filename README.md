@@ -42,6 +42,7 @@ omarchy theme set theme-omarchyos
 - Copia script de bloqueo propio (15s antes de apagar pantalla)
 - Setea Ghostty como terminal default
 - Enlaza settings de code-oss → VS Code (para que el colorTheme aplique en code-oss)
+- Fusiona colores monocromos en la terminal integrada del editor (`dotfiles/vscode/terminal-colors.json`)
 - Aplica `gsettings` (cursor Bibata 20, fuentes, window theme)
 
 ## Lockscreen
@@ -63,6 +64,7 @@ omarchy theme set theme-omarchyos
 | `fonts/Gunplay_Regular.otf` | Fuente Gunplay bundleada para el reloj |
 | `uwsm/env` | Cursor envs persistentes via UWSM |
 | `waybar/style.css` | Wrapper del usuario que hace `@import` a los colores del theme |
+| `vscode/terminal-colors.json` | Colores ANSI monocromos para la terminal integrada del editor |
 | `gtk-3.0/settings.ini` | Adwaita-dark, Yaru-red-dark, Bibata 20 |
 | `icons/Bibata-Modern-Classic/` | Cursor Bibata Modern Classic incluido en el theme |
 | `gtk-3.0/gtk.css` | caret-color, inputs redondeados |

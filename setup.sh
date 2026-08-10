@@ -74,6 +74,17 @@ if command -v code &>/dev/null && [ "$(basename "$(readlink -f "$(command -v cod
   fi
 fi
 
+# Merge monochrome terminal colors into VS Code / code-oss settings
+# (keeps the integrated terminal palette in sync with the system terminals)
+if command -v jq &>/dev/null && [ -f "$DOTFILES/vscode/terminal-colors.json" ]; then
+  SETTINGS_FILE="$HOME/.config/Code/User/settings.json"
+  mkdir -p "$(dirname "$SETTINGS_FILE")"
+  [ -f "$SETTINGS_FILE" ] || printf '{}\n' >"$SETTINGS_FILE"
+  jq -s '.[0] * .[1]' "$SETTINGS_FILE" "$DOTFILES/vscode/terminal-colors.json" >"$SETTINGS_FILE.tmp" \
+    && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
+  echo "Merged monochrome terminal colors into editor settings"
+fi
+
 # Apply GTK settings (safe: no crash if gsettings unavailable)
 if command -v gsettings &>/dev/null; then
   # Apply the rest via gsettings (no Omarchy equivalent: cursor, fonts, window theme)
