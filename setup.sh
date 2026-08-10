@@ -61,6 +61,19 @@ cp "$DOTFILES/fish/config.fish" ~/.config/fish/
 # Set Ghostty as default terminal
 omarchy default terminal ghostty 2>/dev/null || true
 
+# VS Code / code-oss settings bridge
+# Omarchy writes the colorTheme to ~/.config/Code/User/settings.json (VS Code).
+# code-oss (Arch/CachyOS) reads from ~/.config/Code - OSS/User/settings.json,
+# so symlink them so the theme actually applies on code-oss too.
+if command -v code &>/dev/null && [ "$(basename "$(readlink -f "$(command -v code)")")" = "code-oss" ]; then
+  OSS_SETTINGS_DIR="$HOME/.config/Code - OSS/User"
+  mkdir -p "$OSS_SETTINGS_DIR"
+  if [ ! -e "$OSS_SETTINGS_DIR/settings.json" ]; then
+    ln -s "$HOME/.config/Code/User/settings.json" "$OSS_SETTINGS_DIR/settings.json"
+    echo "Linked code-oss settings to VS Code settings (colorTheme applies automatically)"
+  fi
+fi
+
 # Apply GTK settings (safe: no crash if gsettings unavailable)
 if command -v gsettings &>/dev/null; then
   # Apply the rest via gsettings (no Omarchy equivalent: cursor, fonts, window theme)

@@ -41,6 +41,7 @@ omarchy theme set theme-omarchyos
 - Instala fuente **Gunplay** (para el reloj del lockscreen)
 - Copia script de bloqueo propio (15s antes de apagar pantalla)
 - Setea Ghostty como terminal default
+- Enlaza settings de code-oss → VS Code (para que el colorTheme aplique en code-oss)
 - Aplica `gsettings` (cursor Bibata 20, fuentes, window theme)
 
 ## Lockscreen
