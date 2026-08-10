@@ -87,7 +87,7 @@ This palette is the single source of truth — keep every app config (alacritty,
 ## Notes
 
 - `custom_theme.json` is not required: Omarchy never reads it (it is an Omarchist authoring artifact).
-- `vscode.json` uses the `{name, extension}` schema Omarchy expects; install the "Monochrome" extension (publisher `anotherglitchinthematrix`) for VS Code to apply it.
+- `vscode.json` uses the `{name, extension}` schema Omarchy expects; it points to the "Monochromator Dark" theme from `beem.monochromator` (available on Open VSX, so Omarchy can install it automatically on VS Code and code-oss/VSCodium).
 - `neovim.lua` is a lazy.nvim spec (colorscheme `matteblack`) with the monochrome highlights re-applied on every `ColorScheme`; install `tahayvr/matteblack.nvim` in Neovim.
 - Third-party assets: Bibata cursor (MIT), wallpaper from wallhaven, Gunplay font — verify the font's redistribution license before any commercial use of this theme.
 
