@@ -1,2 +1,25 @@
+/* Theme OmarchyOS — waybar colors & window look.
+   Consumed by ~/.config/waybar/style.css via @import.
+   Layout and module margins live in the waybar wrapper (Omarchy or user-owned). */
+
 @define-color background #121212;
 @define-color foreground #bebebe;
+
+window#waybar {
+  background: rgba(0, 0, 0, 0.55);
+  color: #bebebe;
+  border-radius: 12px;
+  margin: 6px 8px;
+  padding: 0 6px;
+}
+
+/* Battery states stay monochrome; severity is expressed by brightness + weight. */
+#battery.warning {
+  color: #a0a0a0;
+  font-weight: bold;
+}
+
+#battery.critical {
+  color: #eaeaea;
+  font-weight: bold;
+}

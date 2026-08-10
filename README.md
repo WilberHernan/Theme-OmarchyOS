@@ -27,20 +27,21 @@ omarchy theme set theme-omarchyos
 
 ## What `setup.sh` does
 
-- Copia `hyprland.lua` (carga `envs.lua` con cursor Bibata)
 - Copia `looknfeel.lua` (11 animaciones spring/bezier, rounding 8)
+- Copia `envs.lua` (variables de cursor)
 - Copia `hyprlock.conf` (reloj estilo Hyadum, input invisible, desbloqueo animado)
 - Copia `uwsm/env` (variables de cursor persistentes entre sesiones)
 - Copia `waybar/style.css` (12px radius, 55% transparente, monocromo)
 - Copia configs de terminales (Alacritty, Kitty, Ghostty)
 - Copia `gtk-3.0/` y `gtk-4.0/` (tema, iconos, cursor, inputs redondeados)
+- Copia `icons/` (cursor Bibata-Modern-Classic)
 - Copia `walker/` (centrado, 13px, subtexto al seleccionar)
 - Copia `/` (config con specs)
 - Copia `fish/config.fish` ( specs al abrir terminal)
 - Instala fuente **Gunplay** (para el reloj del lockscreen)
 - Copia script de bloqueo propio (15s antes de apagar pantalla)
 - Setea Ghostty como terminal default
-- Aplica `gsettings` (iconos Yaru-red-dark, cursor Bibata 20, fuente JetBrainsMono)
+- Aplica `gsettings` (cursor Bibata 20, fuentes, window theme)
 
 ## Lockscreen
 
@@ -53,14 +54,14 @@ omarchy theme set theme-omarchyos
 
 | Archivo | Qué hace |
 |---|---|
-| `hypr/hyprland.lua` | Carga módulos + `require("hypr.envs")` seguro |
+| `hypr/hyprland.lua` | Loader gestionado por Omarchy (no se incluye en el theme) |
 | `hypr/envs.lua` | `XCURSOR_THEME`, `HYPRCURSOR_THEME`, tamaño 20 |
 | `hypr/looknfeel.lua` | 4 curvas, 11 animaciones, rounding 8 |
 | `hypr/hyprlock.conf` | Lockscreen Hyadum-style: Gunplay clock, fade animation |
 | `scripts/omarchy-system-lock` | Lock propio: 15s display-off delay |
 | `fonts/Gunplay_Regular.otf` | Fuente Gunplay bundleada para el reloj |
 | `uwsm/env` | Cursor envs persistentes via UWSM |
-| `waybar/style.css` | Flotante, 12px radius, 55% bg |
+| `waybar/style.css` | Wrapper del usuario que hace `@import` a los colores del theme |
 | `gtk-3.0/settings.ini` | Adwaita-dark, Yaru-red-dark, Bibata 20 |
 | `icons/Bibata-Modern-Classic/` | Cursor Bibata Modern Classic incluido en el theme |
 | `gtk-3.0/gtk.css` | caret-color, inputs redondeados |
@@ -69,6 +70,26 @@ omarchy theme set theme-omarchyos
 | `walker/themes/custom/style.css` | 13px font, subtext en select, 84% box |
 | `/config` | Info limpia (sin imagen) |
 | `fish/config.fish` |  al abrir terminal |
+
+## Palette
+
+| Token | Hex | Use |
+|---|---|---|
+| background | `#121212` | window backgrounds |
+| foreground | `#bebebe` | primary text |
+| accent | `#808080` | accents, selection, borders |
+| border | `#525252` | muted borders, comments |
+| bright | `#eaeaea` | active/hover, cursor |
+| warning | `#a0a0a0` | battery warning, todo (bold) |
+
+This palette is the single source of truth — keep every app config (alacritty, kitty, ghostty, btop, vscode, waybar, mako, walker, swayosd) in sync with it.
+
+## Notes
+
+- `custom_theme.json` is not required: Omarchy never reads it (it is an Omarchist authoring artifact).
+- `vscode.json` uses the `{name, extension}` schema Omarchy expects; install the "Monochrome" extension (publisher `anotherglitchinthematrix`) for VS Code to apply it.
+- `neovim.lua` is a lazy.nvim spec (colorscheme `matteblack`) with the monochrome highlights re-applied on every `ColorScheme`; install `tahayvr/matteblack.nvim` in Neovim.
+- Third-party assets: Bibata cursor (MIT), wallpaper from wallhaven, Gunplay font — verify the font's redistribution license before any commercial use of this theme.
 
 ## Credits
 
