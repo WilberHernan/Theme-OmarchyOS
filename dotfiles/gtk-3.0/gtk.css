@@ -9,14 +9,15 @@
 
 button {
   border-radius: 6px;
-  min-height: 28px;
+  min-height: 26px;
 }
 
 entry {
   border-radius: 6px;
-  min-height: 30px;
+  min-height: 26px;
   caret-color: @fg;
-
+  caret-min-width: 1px;
+  padding: 2px 6px;
 }
 
 entry:focus {

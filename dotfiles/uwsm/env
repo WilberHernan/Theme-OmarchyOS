@@ -6,9 +6,9 @@ export PATH=$OMARCHY_PATH/bin:$PATH:$HOME/.local/bin
 
 # Cursor theme (Bibata-Modern-Classic)
 export XCURSOR_THEME=Bibata-Modern-Classic
-export XCURSOR_SIZE=20
+export XCURSOR_SIZE=16
 export HYPRCURSOR_THEME=Bibata-Modern-Classic
-export HYPRCURSOR_SIZE=20
+export HYPRCURSOR_SIZE=16
 
 # Set default terminal and editor
 source ~/.config/uwsm/default

@@ -89,7 +89,7 @@ fi
 if command -v gsettings &>/dev/null; then
   # Apply the rest via gsettings (no Omarchy equivalent: cursor, fonts, window theme)
   gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Classic" || true
-  gsettings set org.gnome.desktop.interface cursor-size 20 || true
+  gsettings set org.gnome.desktop.interface cursor-size 16 || true
   gsettings set org.gnome.desktop.interface monospace-font-name "JetBrainsMono Nerd Font 11" || true
   gsettings set org.gnome.desktop.interface font-name "Adwaita Sans 11" || true
   gsettings set org.gnome.desktop.wm.preferences theme "Adwaita-dark" || true
