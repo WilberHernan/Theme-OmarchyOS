@@ -16,6 +16,12 @@ hl.config({
 })
 
 hl.config({
+  general = {
+    border_size = 1,
+  },
+})
+
+hl.config({
   cursor = {
     enable_hyprcursor = false,
     hide_on_key_press = true,
