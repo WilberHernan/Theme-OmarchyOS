@@ -1,9 +1,9 @@
 -- Theme OmarchyOS — looknfeel.lua
--- Fast, productive Apple-style animations for Hyprland 0.56 (Lua API)
+-- Apple-style animations for Hyprland 0.56 (Lua API)
 --
 -- NOTE: Hyprland "speed" = duration in 1/100s. LOWER = FASTER.
--- We combine LOW speeds (fast) with an overshoot curve so windows
--- settle with a subtle Apple-style bounce instead of feeling dry.
+-- Fast + subtle overshoot bounce. This is the config the user confirmed
+-- feels right ("me gustó mucho así").
 
 hl.config({
   decoration = {
