@@ -27,9 +27,10 @@ cp "$DOTFILES/hypr/looknfeel.lua" ~/.config/hypr/
 cp "$DOTFILES/hypr/envs.lua" ~/.config/hypr/
 cp "$DOTFILES/hypr/hyprlock.conf" ~/.config/hypr/
 
-# Gunplay font (for hyprlock clock)
+# Fonts (Gunplay for hyprlock clock, Inter for the UI)
 mkdir -p ~/.local/share/fonts
 cp "$DOTFILES/fonts/Gunplay_Regular.otf" ~/.local/share/fonts/
+cp "$DOTFILES/fonts/Inter-VariableFont_slnt,wght.ttf" ~/.local/share/fonts/
 fc-cache -f
 
 # Custom lock script (15s display-off delay)
@@ -90,8 +91,8 @@ if command -v gsettings &>/dev/null; then
   # Apply the rest via gsettings (no Omarchy equivalent: cursor, fonts, window theme)
   gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Classic" || true
   gsettings set org.gnome.desktop.interface cursor-size 16 || true
-  gsettings set org.gnome.desktop.interface monospace-font-name "JetBrainsMono Nerd Font 11" || true
-  gsettings set org.gnome.desktop.interface font-name "Adwaita Sans 11" || true
+  gsettings set org.gnome.desktop.interface monospace-font-name "JetBrainsMono Nerd Font 10" || true
+  gsettings set org.gnome.desktop.interface font-name "Inter 10.5" || true
   gsettings set org.gnome.desktop.wm.preferences theme "Adwaita-dark" || true
 fi
 

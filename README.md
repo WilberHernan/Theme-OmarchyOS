@@ -12,6 +12,7 @@ sudo pacman -S ghostty hyprlock
 ```
 
 > El cursor **Bibata-Modern-Classic** ya viene incluido en el theme (no necesita instalarse aparte).
+> Las fuentes **Gunplay** e **Inter** vienen bundleadas en el theme (se instalan solas desde `fonts/`).
 > `Adwaita-dark` viene con `gtk-engine`, ya debería estar instalado en Omarchy.
 > `hyprlock` viene con Omarchy, pero si no lo tenés: `sudo pacman -S hyprlock`.
 
@@ -31,19 +32,19 @@ omarchy theme set theme-omarchyos
 - Copia `envs.lua` (variables de cursor)
 - Copia `hyprlock.conf` (reloj estilo Hyadum, input invisible, desbloqueo animado)
 - Copia `uwsm/env` (variables de cursor persistentes entre sesiones)
-- Copia `waybar/style.css` (12px radius, 55% transparente, monocromo)
+- Copia `waybar/style.css` (Inter 11, sin bold, 55% transparente, monocromo)
 - Copia configs de terminales (Alacritty, Kitty, Ghostty)
 - Copia `gtk-3.0/` y `gtk-4.0/` (tema, iconos, cursor, inputs redondeados)
 - Copia `icons/` (cursor Bibata-Modern-Classic)
 - Copia `walker/` (centrado, 13px, subtexto al seleccionar)
 - Copia `/` (config con specs)
 - Copia `fish/config.fish` ( specs al abrir terminal)
-- Instala fuente **Gunplay** (para el reloj del lockscreen)
+- Instala las fuentes **Gunplay** (reloj del lockscreen) e **Inter** (interfaz)
 - Copia script de bloqueo propio (15s antes de apagar pantalla)
 - Setea Ghostty como terminal default
 - Enlaza settings de code-oss → VS Code (para que el colorTheme aplique en code-oss)
 - Fusiona colores monocromos en la terminal integrada del editor (`dotfiles/vscode/terminal-colors.json`)
-- Aplica `gsettings` (cursor Bibata 20, fuentes, window theme)
+- Aplica `gsettings` (cursor Bibata 16, fuentes Inter 10.5 / JetBrainsMono 10, window theme)
 
 ## Lockscreen
 
@@ -57,17 +58,31 @@ omarchy theme set theme-omarchyos
 | Archivo | Qué hace |
 |---|---|
 | `hypr/hyprland.lua` | Loader gestionado por Omarchy (no se incluye en el theme) |
-| `hypr/envs.lua` | `XCURSOR_THEME`, `HYPRCURSOR_THEME`, tamaño 20 |
-| `hypr/looknfeel.lua` | 4 curvas, 11 animaciones, rounding 8 |
+| `hypr/envs.lua` | `XCURSOR_THEME`, `HYPRCURSOR_THEME`, tamaño 16 |
+| `hypr/looknfeel.lua` | 4 curvas, 11 animaciones, border_size 1, rounding 8 |
 | `hypr/hyprlock.conf` | Lockscreen Hyadum-style: Gunplay clock, fade animation |
 | `scripts/omarchy-system-lock` | Lock propio: 15s display-off delay |
 | `fonts/Gunplay_Regular.otf` | Fuente Gunplay bundleada para el reloj |
+| `fonts/Inter-VariableFont_slnt,wght.ttf` | Fuente Inter bundleada (interfaz, sutil) |
 | `uwsm/env` | Cursor envs persistentes via UWSM |
-| `waybar/style.css` | Wrapper del usuario que hace `@import` a los colores del theme |
+| `waybar/style.css` | Inter 11 sutil, wrapper con `@import` a los colores del theme |
 | `vscode/terminal-colors.json` | Colores ANSI monocromos para la terminal integrada del editor |
-| `gtk-3.0/settings.ini` | Adwaita-dark, Yaru-red-dark, Bibata 20 |
+| `gtk-3.0/settings.ini` | Adwaita-dark, Yaru-red-dark, Bibata 16, Inter 10.5 |
 | `icons/Bibata-Modern-Classic/` | Cursor Bibata Modern Classic incluido en el theme |
-| `gtk-3.0/gtk.css` | caret-color, inputs redondeados |
+| `gtk-3.0/gtk.css` | caret-color, caret delgado, inputs/botones compactos |
+
+## Fuentes
+
+Combo armónico y sutil (sin bold, elegante):
+
+| Capa | Fuente | Tamaño |
+|---|---|---|
+| Interfaz (GTK) | **Inter** (Regular) | 10.5 |
+| Mono (terminal/código) | JetBrainsMono Nerd Font | 10 |
+| Waybar | **Inter** (sin bold) | 11 |
+| Lockscreen | Gunplay | — |
+
+`Inter` y `Gunplay` se instalan automáticamente desde `fonts/` (no hay que instalarlas aparte). `JetBrainsMono Nerd Font` es una dependencia del sistema (se instala con `nerd-fonts-jetbrains-mono`).
 | `gtk-4.0/gtk.css` | caret-color |
 | `walker/config.toml` | Centrado, padding 80x300 |
 | `walker/themes/custom/style.css` | 13px font, subtext en select, 84% box |
