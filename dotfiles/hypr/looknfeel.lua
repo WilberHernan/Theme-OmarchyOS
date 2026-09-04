@@ -117,3 +117,6 @@ hl.layer_rule({
   blur = true,
   ignore_alpha = 0.4,
 })
+
+-- Waybar (layer namespace is "waybar") — intentionally left without a blur
+-- rule: user prefers the bar fully transparent with no frosted effect.
