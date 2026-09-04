@@ -30,9 +30,9 @@ scrollbar {
 }
 
 .box {
-  /* Premium matte card — near-opaque so it never blends with apps behind it,
-     subtle catch-light border and soft drop shadow for depth */
-  background: rgba(18, 18, 18, 0.97);
+  /* Premium glass card — translucent so the blurred app behind gives it a
+     frosted look (blur handled by hyprland layer rule on the walker layer) */
+  background: rgba(18, 18, 18, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 16px;
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
