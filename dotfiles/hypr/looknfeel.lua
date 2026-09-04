@@ -118,11 +118,5 @@ hl.layer_rule({
   ignore_alpha = 0.4,
 })
 
--- Waybar (layer namespace is "waybar") — same frosted-glass blur as windows,
--- notifications and the launcher, so the bar reads as translucent premium
--- glass instead of a dark solid strip.
-hl.layer_rule({
-  match = { namespace = "waybar" },
-  blur = true,
-  ignore_alpha = 0.4,
-})
+-- Waybar (layer namespace is "waybar") — intentionally left without a blur
+-- rule: user prefers the bar fully transparent with no frosted effect.
