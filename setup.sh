@@ -16,6 +16,10 @@ cp -r "$DOTFILES/icons/Bibata-Modern-Classic" ~/.icons/
 mkdir -p ~/.config/waybar
 cp "$DOTFILES/waybar/style.css" ~/.config/waybar/
 
+# Mako notifications — glass look, top-center, banner pegado al borde superior
+mkdir -p ~/.config/mako
+cp "$DOTFILES/mako/config" ~/.config/mako/config
+
 # Terminals (skip if dir missing)
 cp "$DOTFILES/kitty.conf" ~/.config/kitty/ 2>/dev/null || true
 cp "$DOTFILES/alacritty.toml" ~/.config/alacritty/ 2>/dev/null || true
