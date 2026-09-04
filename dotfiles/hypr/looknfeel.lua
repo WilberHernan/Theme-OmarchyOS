@@ -108,3 +108,12 @@ hl.layer_rule({
   match = { namespace = "notifications" },
   animation = "slide",
 })
+
+-- Walker launcher (layer namespace is "walker") — same blur as regular
+-- windows so the launcher stays premium but readable: the app behind is
+-- blurred (size 4 / passes 3) instead of showing through as sharp text.
+hl.layer_rule({
+  match = { namespace = "walker" },
+  blur = true,
+  ignore_alpha = 0.4,
+})
