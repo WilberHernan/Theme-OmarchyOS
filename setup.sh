@@ -27,25 +27,6 @@ cp "$DOTFILES/hypr/looknfeel.lua" ~/.config/hypr/
 cp "$DOTFILES/hypr/envs.lua" ~/.config/hypr/
 cp "$DOTFILES/hypr/hyprlock.conf" ~/.config/hypr/
 
-# SwayNC — premium Apple-style glass notifications.
-# Replaces mako (Omarchy's default). Bundles config + glass style.
-# Order matters: stop/disable mako BEFORE launching swaync so they
-# don't fight for the notification daemon.
-if command -v swaync &>/dev/null; then
-  mkdir -p ~/.config/swaync
-  cp "$DOTFILES/swaync/config.json" ~/.config/swaync/
-  cp "$DOTFILES/swaync/style.css" ~/.config/swaync/
-  systemctl --user disable --now mako.service 2>/dev/null || true
-  pkill mako 2>/dev/null || true
-  # Relaunch swaync with the new config (only if not already running)
-  if ! pgrep -x swaync &>/dev/null; then
-    nohup swaync >/dev/null 2>&1 &
-  fi
-else
-  echo "!! swaync not found — install it with: sudo pacman -S swaync"
-fi
-
-
 # Fonts (Gunplay for hyprlock clock, Inter for the UI)
 mkdir -p ~/.local/share/fonts
 cp "$DOTFILES/fonts/Gunplay_Regular.otf" ~/.local/share/fonts/
