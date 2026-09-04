@@ -52,6 +52,10 @@ hl.curve("overshoot", { type = "bezier", points = { { 0.32, 1.1 }, { 0.55, 1.0 }
 -- Snappy spring with a balanced, subtle bounce
 hl.curve("springApple", { type = "spring", mass = 1, stiffness = 620, dampening = 34 } )
 
+-- Premium decelerate: arrives fast, decelerates elegantly into place.
+-- Standard "expensive" easing (cubic-bezier 0.16,1,0.3,1) used across premium UI.
+hl.curve("premiumEase", { type = "bezier", points = { { 0.16, 1 }, { 0.3, 1 } } })
+
 -- Global baseline (fast)
 hl.animation({ leaf = "global", enabled = true, speed = 4, bezier = "quick" })
 
@@ -63,7 +67,7 @@ hl.animation({ leaf = "windowsMove",   enabled = true, speed = 4, spring = "spri
 
 -- Layers (dropdowns, panels)
 hl.animation({ leaf = "layers",        enabled = true, speed = 4, bezier = "overshoot" })
-hl.animation({ leaf = "layersIn",      enabled = true, speed = 3, bezier = "overshoot", style = "fade" })
+hl.animation({ leaf = "layersIn",      enabled = true, speed = 3, bezier = "premiumEase", style = "fade" })
 hl.animation({ leaf = "layersOut",     enabled = true, speed = 3, bezier = "fastEaseInOut", style = "fade" })
 
 -- Fades
@@ -96,4 +100,11 @@ hl.layer_rule({
   match = { namespace = "notifications" },
   blur = true,
   ignore_alpha = 0.4,
+})
+
+-- Notifications drop in from the top like an Apple banner (premium slide).
+-- Uses the premium decelerate curve (via layersIn) for an elegant settle.
+hl.layer_rule({
+  match = { namespace = "notifications" },
+  animation = "slide",
 })
