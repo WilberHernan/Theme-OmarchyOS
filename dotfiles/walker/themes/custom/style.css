@@ -6,7 +6,7 @@
 }
 
 * {
-  font-family: "JetBrainsMono Nerd Font";
+  font-family: "Inter";
   font-size: 13px;
   color: @text;
 }
@@ -30,43 +30,46 @@ scrollbar {
 }
 
 .box {
-  background: rgba(18, 18, 18, 0.84);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  padding: 8px 0;
-  min-width: 400px;
+  /* Premium glass card — translucent, subtle catch-light, soft drop shadow */
+  background: rgba(18, 18, 18, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
+  padding: 10px 0;
+  min-width: 420px;
 }
 
 .search-container {
   background: transparent;
-  padding: 8px 12px 4px;
+  padding: 12px 14px 6px;
 }
 
 .input {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  padding: 8px 12px;
-  min-height: 20px;
-  caret-color: @text;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 10px 14px;
+  min-height: 22px;
+  caret-color: #f2f2f2;
 }
 
 .input placeholder {
-  opacity: 0.4;
+  opacity: 0.45;
 }
 
 .input:focus,
 .input:active {
+  border-color: rgba(255, 255, 255, 0.22);
   box-shadow: none;
   outline: none;
 }
 
 .content-container {
-  padding: 0 4px;
+  padding: 6px 6px;
 }
 
 .placeholder {
-  padding: 16px;
+  padding: 18px;
   color: @text;
   opacity: 0.4;
 }
@@ -76,25 +79,26 @@ scrollbar {
 }
 
 child:selected {
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 6px;
-  margin: 0 4px;
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  margin: 0 6px 2px;
 }
 
 child:selected .item-box * {
-  color: @text;
+  color: #f2f2f2;
 }
 
 child:selected .item-subtext {
   font-size: 11px;
   opacity: 0.6;
-  min-height: 16px;
+  min-height: 14px;
   padding: 0;
   margin: 0;
 }
 
 .item-box {
-  padding: 6px 8px;
+  padding: 8px 10px;
 }
 
 .item-text-box {
@@ -114,7 +118,7 @@ child:selected .item-subtext {
 }
 
 .item-image {
-  margin-right: 8px;
+  margin-right: 12px;
   -gtk-icon-transform: scale(0.9);
 }
 
@@ -131,7 +135,7 @@ child:selected .item-subtext {
 .keybind-hints label {
   font-size: 11px;
   opacity: 0.5;
-  padding: 4px 12px 8px;
+  padding: 6px 14px 10px;
 }
 
 .preview {
