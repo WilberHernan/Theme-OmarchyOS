@@ -20,6 +20,11 @@ cp "$DOTFILES/waybar/style.css" ~/.config/waybar/
 mkdir -p ~/.config/mako
 cp "$DOTFILES/mako/config" ~/.config/mako/config
 
+# SwayOSD (volume/brightness OSD) — premium glass to match the theme
+mkdir -p ~/.config/swayosd
+cp "$DOTFILES/swayosd/config.toml" ~/.config/swayosd/config.toml
+cp "$DOTFILES/swayosd/style.css" ~/.config/swayosd/style.css
+
 # Terminals (skip if dir missing)
 cp "$DOTFILES/kitty.conf" ~/.config/kitty/ 2>/dev/null || true
 cp "$DOTFILES/alacritty.toml" ~/.config/alacritty/ 2>/dev/null || true

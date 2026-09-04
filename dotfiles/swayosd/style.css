@@ -1,0 +1,42 @@
+@import "../omarchy/current/theme/swayosd.css";
+
+/* Theme OmarchyOS — premium glass OSD (volume / brightness).
+   Style is overridden here to match the monochrome glass look used across
+   the UI (notifications, panels): translucent card, catch-light border,
+   Inter font, rounded progress bar. */
+
+window {
+  border-radius: 12px;                /* elegant, not square */
+  opacity: 0.92;
+
+  /* Soft glass: translucent surface + subtle catch-light border */
+  background-color: rgba(18, 18, 18, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+label {
+  font-family: 'Inter';
+  font-size: 11pt;
+  color: #eaeaea;
+}
+
+image {
+  color: #f2f2f2;
+}
+
+/* Rounded, monochrome progress bar */
+progressbar, levelbar block, levelbar trough {
+  border-radius: 6px;
+}
+
+progress {
+  border-radius: 6px;
+}
+
+levelbar block {
+  background-color: #808080;
+}
+
+levelbar trough {
+  background-color: #525252;
+}
