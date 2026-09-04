@@ -41,7 +41,9 @@ scrollbar {
 }
 
 .search-container {
-  background: transparent;
+  /* Input field hidden — keyboard-only user: typing still filters, no
+     visible search box needed. */
+  display: none;
   padding: 12px 14px 6px;
 }
 
