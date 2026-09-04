@@ -30,10 +30,10 @@ scrollbar {
 }
 
 .box {
-  /* Premium glass card — translucent so the blurred app behind gives it a
-     frosted look (blur handled by hyprland layer rule on the walker layer) */
-  background: rgba(18, 18, 18, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  /* Premium frosted-glass card — let the blurred app behind shine through
+     while keeping contrast. Blur handled by the hyprland layer rule. */
+  background: rgba(18, 18, 18, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.14);
   border-radius: 16px;
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
   padding: 10px 0;
