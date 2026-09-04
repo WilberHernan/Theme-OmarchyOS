@@ -12,6 +12,15 @@ hl.config({
     inactive_opacity = 0.72,
     dim_inactive = true,
     dim_strength = 0.15,
+    blur = {
+      enabled = true,
+      size = 4,
+      passes = 3,
+      new_optimizations = true,
+      ignore_opacity = true,
+      brightness = 0.6,
+      contrast = 0.85,
+    },
   },
 })
 
@@ -79,3 +88,12 @@ hl.animation({ leaf = "borderangle",   enabled = true, speed = 100, bezier = "li
 -- Workspaces
 hl.animation({ leaf = "workspaces",        enabled = true, speed = 4, spring = "springApple", style = "slide" })
 hl.animation({ leaf = "specialWorkspace",    enabled = true, speed = 4, spring = "springApple", style = "slidevert" })
+
+-- Glass notification effect (mako layer namespace is "notifications")
+-- Blurs the content behind the translucent card; ignore_alpha keeps the
+-- rounded corners clean instead of showing a square blur patch.
+hl.layer_rule({
+  match = { namespace = "notifications" },
+  blur = true,
+  ignore_alpha = 0.4,
+})
