@@ -1,19 +1,27 @@
 window {
-    background-color: rgba(18, 18, 18, 0.8);
+    background-color: rgba(18, 18, 18, 0.55);
     border-radius: 12px;
-    border: 1px solid #808080;
+    border: 1px solid rgba(255, 255, 255, 0.10);
 }
 
 label {
-    color: #bebebe;
+    font-family: 'Inter';
+    font-size: 11pt;
+    color: #eaeaea;
+}
+
+image {
+    color: #f2f2f2;
+}
+
+progressbar, levelbar block, levelbar trough {
+    border-radius: 6px;
 }
 
 levelbar block {
     background-color: #808080;
-    border-radius: 4px;
 }
 
 levelbar trough {
     background-color: #525252;
-    border-radius: 4px;
 }
