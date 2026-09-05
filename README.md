@@ -86,7 +86,7 @@ cp <archivo-cambiado> "$T/..." && cp <archivo-cambiado> "$C/..."
 - Copia `gtk-3.0/` y `gtk-4.0/` (tema, iconos, cursor, inputs redondeados)
 - Copia `icons/` (cursor Bibata-Modern-Classic)
 - Copia `walker/` (centrado, 13px, subtexto al seleccionar)
-- Copia `fish/config.fish` (terminal limpia al abrir)
+- - Copia `fish/config.fish` (terminal limpia al abrir)
 - Instala las fuentes **Gunplay** (reloj del lockscreen) e **Inter** (interfaz)
 - Copia script de bloqueo propio (15s antes de apagar pantalla)
 - Setea Ghostty como terminal default
