@@ -98,11 +98,6 @@ echo ":: walker"
 safe_copy "$DOTFILES/walker/config.toml" "$HOME/.config/walker/config.toml"
 safe_copy "$DOTFILES/walker/themes/custom/style.css" "$HOME/.config/walker/themes/custom/style.css"
 
-#  (Gentle-AI  logo + info centrada)
-echo "::  ( Gentle-AI)"
-safe_copy "$DOTFILES//config.jsonc" "$HOME/.config//config.jsonc"
-safe_copy "$DOTFILES//.txt" "$HOME/.config/omarchy/branding/.txt"
-
 # Fish
 echo ":: fish"
 safe_copy "$DOTFILES/fish/config.fish" "$HOME/.config/fish/config.fish"

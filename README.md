@@ -8,14 +8,13 @@ Install these once before the theme:
 
 ```bash
 yay -S yaru-icon-theme nerd-fonts-jetbrains-mono
-sudo pacman -S ghostty hyprlock 
+sudo pacman -S ghostty hyprlock
 ```
 
 > El cursor **Bibata-Modern-Classic** ya viene incluido en el theme (no necesita instalarse aparte).
 > Las fuentes **Gunplay** e **Inter** vienen bundleadas en el theme (se instalan solas desde `fonts/`).
 > `Adwaita-dark` viene con `gtk-engine`, ya debería estar instalado en Omarchy.
 > `hyprlock` viene con Omarchy, pero si no lo tenés: `sudo pacman -S hyprlock`.
-> `` reemplaza a  para el greeting con el  Gentle-AI.
 
 ## Install
 
@@ -87,8 +86,7 @@ cp <archivo-cambiado> "$T/..." && cp <archivo-cambiado> "$C/..."
 - Copia `gtk-3.0/` y `gtk-4.0/` (tema, iconos, cursor, inputs redondeados)
 - Copia `icons/` (cursor Bibata-Modern-Classic)
 - Copia `walker/` (centrado, 13px, subtexto al seleccionar)
-- Copia `/` (config + logo  Gentle-AI) e instala el  en `~/.config/omarchy/branding/`
-- Copia `fish/config.fish` ( al abrir terminal)
+- Copia `fish/config.fish` (terminal limpia al abrir)
 - Instala las fuentes **Gunplay** (reloj del lockscreen) e **Inter** (interfaz)
 - Copia script de bloqueo propio (15s antes de apagar pantalla)
 - Setea Ghostty como terminal default
@@ -125,18 +123,8 @@ cp <archivo-cambiado> "$T/..." && cp <archivo-cambiado> "$C/..."
 | `gtk-4.0/gtk.css` | caret-color |
 | `walker/config.toml` | Centrado, padding 80x300 |
 | `walker/themes/custom/style.css` | 13px font, subtext en select, 84% box |
-| `/.txt` | Logo  Gentle-AI (braille, sin color) → `~/.config/omarchy/branding/` |
-| `/config.jsonc` | Info centrada verticalmente, iconos, sin dos puntos |
 | `shaders/*.glsl` | Shaders cursor: smear Gentle-AI (default), blaze alternativos |
-| `fish/config.fish` |  con  al abrir terminal |
-
-***REMOVED***
-
-***REMOVED***
-***REMOVED***
-***REMOVED***
-
-## Cursor (Ghostty)
+| `fish/config.fish` | Config de fish (terminal limpia al abrir) |
 
 - `cursor-style = "block"` sin blink + **cursor smear** Gentle-AI (`cursor_smear_gentleman.glsl`).
 - Alternativas incluidas: `cursor_blaze.glsl` (estela ámbar) y `cursor_blaze_2.glsl` (cola amarilla, solo saltos largos).
