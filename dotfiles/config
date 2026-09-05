@@ -22,7 +22,9 @@ cursor-style-blink = false
 # Shader draws a stretched parallelogram between previous and current cursor
 # position, producing a subtle motion smear. See:
 # https://github.com/Gentleman-Programming/Gentleman.Dots/tree/main/GentlemanGhostty/shaders
-custom-shader = shaders/cursor_smear_gentleman.glsl
+# Alternatives: shaders/cursor_blaze.glsl (amber/red trail + glow),
+#               shaders/cursor_blaze_2.glsl (yellow trail, long jumps only)
+custom-shader = shaders/cursor_blaze.glsl
 
 # Cursor styling + SSH session terminfo
 # (all shell integration options must be passed together)
