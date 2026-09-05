@@ -18,6 +18,12 @@ gtk-toolbar-style = flat
 cursor-style = "block"
 cursor-style-blink = false
 
+# Cursor smear effect (Gentleman Programming / Gentleman.Dots)
+# Shader draws a stretched parallelogram between previous and current cursor
+# position, producing a subtle motion smear. See:
+# https://github.com/Gentleman-Programming/Gentleman.Dots/tree/main/GentlemanGhostty/shaders
+custom-shader = shaders/cursor_smear_gentleman.glsl
+
 # Cursor styling + SSH session terminfo
 # (all shell integration options must be passed together)
 shell-integration-features = no-cursor,ssh-env

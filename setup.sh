@@ -59,6 +59,7 @@ echo ":: terminals"
 safe_copy "$DOTFILES/kitty.conf" "$HOME/.config/kitty/kitty.conf"
 safe_copy "$DOTFILES/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
 safe_copy "$DOTFILES/config" "$HOME/.config/ghostty/config"
+safe_copy "$DOTFILES/shaders/cursor_smear_gentleman.glsl" "$HOME/.config/ghostty/shaders/cursor_smear_gentleman.glsl"
 
 # Hyprland (hyprland.lua loader is managed by Omarchy — do not pin it here)
 echo ":: hypr (looknfeel/envs/hyprlock — loader stays Omarchy-owned)"
