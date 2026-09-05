@@ -7,7 +7,7 @@
 # script is idempotent and never destroys user-local tweaks silently.
 
 set -e
-ONI_DIR="$(cd "${0%/*}" && pwd)"
+ONI_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DOTFILES="$ONI_DIR/dotfiles"
 TS="$(date +%Y%m%d-%H%M%S)"
 
