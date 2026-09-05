@@ -8,14 +8,14 @@
 hl.config({
   decoration = {
     rounding = 8,
-    active_opacity = 0.84,
-    inactive_opacity = 0.72,
+    active_opacity = 0.80,
+    inactive_opacity = 0.68,
     dim_inactive = true,
     dim_strength = 0.15,
     blur = {
       enabled = true,
-      size = 4,
-      passes = 3,
+      size = 2,
+      passes = 2,
       new_optimizations = true,
       ignore_opacity = true,
       brightness = 0.6,
@@ -28,7 +28,7 @@ hl.config({
   general = {
     border_size = 1,
     gaps_in = 3,
-    gaps_out = 10,
+    gaps_out = { top = 6, right = 6, bottom = 6, left = 6 },
   },
 })
 
@@ -111,7 +111,7 @@ hl.layer_rule({
 
 -- Walker launcher (layer namespace is "walker") — same blur as regular
 -- windows so the launcher stays premium but readable: the app behind is
--- blurred (size 4 / passes 3) instead of showing through as sharp text.
+-- blurred (size 2 / passes 2) instead of showing through as sharp text.
 hl.layer_rule({
   match = { namespace = "walker" },
   blur = true,
