@@ -8,13 +8,14 @@ Install these once before the theme:
 
 ```bash
 yay -S yaru-icon-theme nerd-fonts-jetbrains-mono
-sudo pacman -S ghostty hyprlock
+sudo pacman -S ghostty hyprlock 
 ```
 
 > El cursor **Bibata-Modern-Classic** ya viene incluido en el theme (no necesita instalarse aparte).
 > Las fuentes **Gunplay** e **Inter** vienen bundleadas en el theme (se instalan solas desde `fonts/`).
 > `Adwaita-dark` viene con `gtk-engine`, ya debería estar instalado en Omarchy.
 > `hyprlock` viene con Omarchy, pero si no lo tenés: `sudo pacman -S hyprlock`.
+> `` reemplaza a  para el greeting con el  Gentle-AI.
 
 ## Install
 
@@ -82,12 +83,12 @@ cp <archivo-cambiado> "$T/..." && cp <archivo-cambiado> "$C/..."
 - **No** toca `waybar/config.jsonc` (módulos) — es de Omarchy; los módulos y el clima se quitan/editan a mano
 - Copia `mako/config` (glass, top-center, banner pegado arriba)
 - Copia `swayosd/` (OSD premium glass)
-- Copia configs de terminales (Alacritty, Kitty, Ghostty)
+- Copia configs de terminales (Alacritty, Kitty, Ghostty) + shaders del cursor (smear Gentle-AI)
 - Copia `gtk-3.0/` y `gtk-4.0/` (tema, iconos, cursor, inputs redondeados)
 - Copia `icons/` (cursor Bibata-Modern-Classic)
 - Copia `walker/` (centrado, 13px, subtexto al seleccionar)
-- Copia `/` (config con specs)
-- Copia `fish/config.fish` ( specs al abrir terminal)
+- Copia `/` (config + logo  Gentle-AI) e instala el  en `~/.config/omarchy/branding/`
+- Copia `fish/config.fish` ( al abrir terminal)
 - Instala las fuentes **Gunplay** (reloj del lockscreen) e **Inter** (interfaz)
 - Copia script de bloqueo propio (15s antes de apagar pantalla)
 - Setea Ghostty como terminal default
@@ -107,6 +108,40 @@ cp <archivo-cambiado> "$T/..." && cp <archivo-cambiado> "$C/..."
 | Archivo | Qué hace |
 |---|---|
 | `hypr/hyprland.lua` | Loader gestionado por Omarchy (no se incluye en el theme) |
+| `hypr/envs.lua` | `XCURSOR_THEME`, `HYPRCURSOR_THEME`, tamaño 16 |
+| `hypr/looknfeel.lua` | 4 curvas, 11 animaciones, rounding 8, blur layer rules |
+| `hypr/hyprlock.conf` | Lockscreen Hyadum-style: Gunplay clock, fade animation |
+| `scripts/omarchy-system-lock` | Lock propio: 15s display-off delay |
+| `fonts/Gunplay_Regular.otf` | Fuente Gunplay bundleada para el reloj |
+| `fonts/Inter-VariableFont_slnt,wght.ttf` | Fuente Inter UI bundleada |
+| `uwsm/env` | Cursor envs persistentes via UWSM |
+| `waybar/style.css` | Wrapper del usuario que hace `@import` a los colores del theme |
+| `mako/config` | Notificaciones glass, top-center, banner pegado arriba |
+| `swayosd/style.css` | OSD premium glass |
+| `vscode/terminal-colors.json` | Colores ANSI monocromos para la terminal integrada del editor |
+| `gtk-3.0/settings.ini` | Adwaita-dark, Yaru-red-dark, Bibata 16 |
+| `icons/Bibata-Modern-Classic/` | Cursor Bibata Modern Classic incluido en el theme |
+| `gtk-3.0/gtk.css` | caret-color, inputs redondeados |
+| `gtk-4.0/gtk.css` | caret-color |
+| `walker/config.toml` | Centrado, padding 80x300 |
+| `walker/themes/custom/style.css` | 13px font, subtext en select, 84% box |
+| `/.txt` | Logo  Gentle-AI (braille, sin color) → `~/.config/omarchy/branding/` |
+| `/config.jsonc` | Info centrada verticalmente, iconos, sin dos puntos |
+| `shaders/*.glsl` | Shaders cursor: smear Gentle-AI (default), blaze alternativos |
+| `fish/config.fish` |  con  al abrir terminal |
+
+***REMOVED***
+
+***REMOVED***
+***REMOVED***
+- El logo se renderiza con la fuente del terminal (JetBrainsMono Nerd Font). Si querés el braille más grueso: `FantasqueSansM Nerd Font`.
+***REMOVED***
+
+## Cursor (Ghostty)
+
+- `cursor-style = "block"` sin blink + **cursor smear** Gentle-AI (`cursor_smear_gentleman.glsl`).
+- Alternativas incluidas: `cursor_blaze.glsl` (estela ámbar) y `cursor_blaze_2.glsl` (cola amarilla, solo saltos largos).
+- Para cambiar: editá `custom-shader` en `dotfiles/config` y reinstalá.
 
 ## Estructura del glass (look actual)
 

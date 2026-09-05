@@ -59,7 +59,12 @@ echo ":: terminals"
 safe_copy "$DOTFILES/kitty.conf" "$HOME/.config/kitty/kitty.conf"
 safe_copy "$DOTFILES/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
 safe_copy "$DOTFILES/config" "$HOME/.config/ghostty/config"
+
+# Ghostty cursor shaders (Gentleman Programming smear effect + blaze alternatives)
+mkdir -p "$HOME/.config/ghostty/shaders"
 safe_copy "$DOTFILES/shaders/cursor_smear_gentleman.glsl" "$HOME/.config/ghostty/shaders/cursor_smear_gentleman.glsl"
+safe_copy "$DOTFILES/shaders/cursor_blaze.glsl" "$HOME/.config/ghostty/shaders/cursor_blaze.glsl"
+safe_copy "$DOTFILES/shaders/cursor_blaze_2.glsl" "$HOME/.config/ghostty/shaders/cursor_blaze_2.glsl"
 
 # Hyprland (hyprland.lua loader is managed by Omarchy — do not pin it here)
 echo ":: hypr (looknfeel/envs/hyprlock — loader stays Omarchy-owned)"
@@ -93,9 +98,10 @@ echo ":: walker"
 safe_copy "$DOTFILES/walker/config.toml" "$HOME/.config/walker/config.toml"
 safe_copy "$DOTFILES/walker/themes/custom/style.css" "$HOME/.config/walker/themes/custom/style.css"
 
-#  (specs only)
-echo ":: "
-safe_copy "$DOTFILES//config" "$HOME/.config//config"
+#  (Gentle-AI  logo + info centrada)
+echo "::  ( Gentle-AI)"
+safe_copy "$DOTFILES//config.jsonc" "$HOME/.config//config.jsonc"
+safe_copy "$DOTFILES//.txt" "$HOME/.config/omarchy/branding/.txt"
 
 # Fish
 echo ":: fish"

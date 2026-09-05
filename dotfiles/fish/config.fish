@@ -1,6 +1,6 @@
 source /usr/share/cachyos-fish-config/cachyos-config.fish
 
-# overwrite greeting -  specs only
+# overwrite greeting - Gentle-AI  logo ()
 function fish_greeting
-     --off
+    
 end
