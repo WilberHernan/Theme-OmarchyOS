@@ -18,7 +18,7 @@ hl.config({
       passes = 1,
       new_optimizations = true,
       ignore_opacity = true,
-      brightness = 0.75,
+      brightness = 0.68,
       contrast = 0.85,
     },
   },
