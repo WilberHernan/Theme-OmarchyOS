@@ -1,72 +1,104 @@
 #!/bin/bash
 # Theme OmarchyOS — full setup script
 # Run this after `omarchy theme install` + `omarchy theme set theme-omarchyos`
+#
+# SAFETY: every file that overwrites an existing user config first makes a
+# timestamped backup in ~/.config/<app>/*.bak-<timestamp>. Re-running this
+# script is idempotent and never destroys user-local tweaks silently.
 
 set -e
 ONI_DIR="$(cd "${0%/*}" && pwd)"
 DOTFILES="$ONI_DIR/dotfiles"
+TS="$(date +%Y%m%d-%H%M%S)"
+
+# --- Safe helpers -----------------------------------------------------------
+# Copy src -> dst, backing up an existing dst to dst.bak-$TS first.
+safe_copy() {
+  local src="$1" dst="$2"
+  mkdir -p "$(dirname "$dst")"
+  if [ -e "$dst" ] && ! cmp -s "$src" "$dst"; then
+    cp -a "$dst" "$dst.bak-$TS" 2>/dev/null || true
+    echo "  backed up: $(basename "$dst") -> $(basename "$dst").bak-$TS"
+  fi
+  cp "$src" "$dst"
+}
+
+# Recursive copy for directories (cursor theme).
+safe_copy_dir() {
+  local src="$1" dst_parent="$2"
+  mkdir -p "$dst_parent"
+  if [ -e "$dst_parent/$(basename "$src")" ] && ! diff -rq "$src" "$dst_parent/$(basename "$src")" >/dev/null 2>&1; then
+    cp -a "$dst_parent/$(basename "$src")" "$dst_parent/$(basename "$src").bak-$TS" 2>/dev/null || true
+    echo "  backed up: $(basename "$src") -> $(basename "$src").bak-$TS"
+  fi
+  cp -r "$src" "$dst_parent/"
+}
 
 echo "Setting up Theme OmarchyOS companion configs..."
+echo "Backups (if any) use suffix .bak-$TS"
 
 # Cursor theme (Bibata-Modern-Classic, ships with the theme)
-mkdir -p ~/.icons
-cp -r "$DOTFILES/icons/Bibata-Modern-Classic" ~/.icons/
+echo ":: icons"
+safe_copy_dir "$DOTFILES/icons/Bibata-Modern-Classic" "$HOME/.icons"
 
-# Waybar
-mkdir -p ~/.config/waybar
-cp "$DOTFILES/waybar/style.css" ~/.config/waybar/
+# Waybar (style only — the config.jsonc/modules stay user-owned, NOT themed)
+echo ":: waybar (style.css only)"
+safe_copy "$DOTFILES/waybar/style.css" "$HOME/.config/waybar/style.css"
 
 # Mako notifications — glass look, top-center, banner pegado al borde superior
-mkdir -p ~/.config/mako
-cp "$DOTFILES/mako/config" ~/.config/mako/config
+echo ":: mako"
+safe_copy "$DOTFILES/mako/config" "$HOME/.config/mako/config"
 
 # SwayOSD (volume/brightness OSD) — premium glass to match the theme
-mkdir -p ~/.config/swayosd
-cp "$DOTFILES/swayosd/config.toml" ~/.config/swayosd/config.toml
-cp "$DOTFILES/swayosd/style.css" ~/.config/swayosd/style.css
+echo ":: swayosd"
+safe_copy "$DOTFILES/swayosd/config.toml" "$HOME/.config/swayosd/config.toml"
+safe_copy "$DOTFILES/swayosd/style.css" "$HOME/.config/swayosd/style.css"
 
 # Terminals (skip if dir missing)
-cp "$DOTFILES/kitty.conf" ~/.config/kitty/ 2>/dev/null || true
-cp "$DOTFILES/alacritty.toml" ~/.config/alacritty/ 2>/dev/null || true
-cp "$DOTFILES/config" ~/.config/ghostty/ 2>/dev/null || true
+echo ":: terminals"
+safe_copy "$DOTFILES/kitty.conf" "$HOME/.config/kitty/kitty.conf"
+safe_copy "$DOTFILES/alacritty.toml" "$HOME/.config/alacritty/alacritty.toml"
+safe_copy "$DOTFILES/config" "$HOME/.config/ghostty/config"
 
 # Hyprland (hyprland.lua loader is managed by Omarchy — do not pin it here)
-mkdir -p ~/.config/hypr
-cp "$DOTFILES/hypr/looknfeel.lua" ~/.config/hypr/
-cp "$DOTFILES/hypr/envs.lua" ~/.config/hypr/
-cp "$DOTFILES/hypr/hyprlock.conf" ~/.config/hypr/
+echo ":: hypr (looknfeel/envs/hyprlock — loader stays Omarchy-owned)"
+safe_copy "$DOTFILES/hypr/looknfeel.lua" "$HOME/.config/hypr/looknfeel.lua"
+safe_copy "$DOTFILES/hypr/envs.lua" "$HOME/.config/hypr/envs.lua"
+safe_copy "$DOTFILES/hypr/hyprlock.conf" "$HOME/.config/hypr/hyprlock.conf"
 
-# Fonts (Gunplay for hyprlock clock, Inter for the UI)
-mkdir -p ~/.local/share/fonts
-cp "$DOTFILES/fonts/Gunplay_Regular.otf" ~/.local/share/fonts/
-cp "$DOTFILES/fonts/Inter-VariableFont_slnt,wght.ttf" ~/.local/share/fonts/
+# Fonts (Gunplay for hyprlock clock, Inter for the UI) — additive, no overwrite
+echo ":: fonts"
+mkdir -p "$HOME/.local/share/fonts"
+cp -n "$DOTFILES/fonts/Gunplay_Regular.otf" "$HOME/.local/share/fonts/" 2>/dev/null || true
+cp -n "$DOTFILES/fonts/Inter-VariableFont_slnt,wght.ttf" "$HOME/.local/share/fonts/" 2>/dev/null || true
 fc-cache -f
 
 # Custom lock script (15s display-off delay)
-cp "$DOTFILES/scripts/omarchy-system-lock" ~/.local/share/omarchy/bin/omarchy-system-lock
+echo ":: lock script"
+safe_copy "$DOTFILES/scripts/omarchy-system-lock" "$HOME/.local/share/omarchy/bin/omarchy-system-lock"
 
 # UWSM env (cursor vars persistent across logins)
-mkdir -p ~/.config/uwsm
-cp "$DOTFILES/uwsm/env" ~/.config/uwsm/
+echo ":: uwsm/env"
+safe_copy "$DOTFILES/uwsm/env" "$HOME/.config/uwsm/env"
 
 # GTK
-mkdir -p ~/.config/gtk-3.0 ~/.config/gtk-4.0
-cp "$DOTFILES/gtk-3.0/gtk.css" ~/.config/gtk-3.0/
-cp "$DOTFILES/gtk-3.0/settings.ini" ~/.config/gtk-3.0/
-cp "$DOTFILES/gtk-4.0/gtk.css" ~/.config/gtk-4.0/
+echo ":: gtk"
+safe_copy "$DOTFILES/gtk-3.0/gtk.css" "$HOME/.config/gtk-3.0/gtk.css"
+safe_copy "$DOTFILES/gtk-3.0/settings.ini" "$HOME/.config/gtk-3.0/settings.ini"
+safe_copy "$DOTFILES/gtk-4.0/gtk.css" "$HOME/.config/gtk-4.0/gtk.css"
 
 # Walker
-mkdir -p ~/.config/walker/themes/custom
-cp "$DOTFILES/walker/config.toml" ~/.config/walker/
-cp "$DOTFILES/walker/themes/custom/style.css" ~/.config/walker/themes/custom/
+echo ":: walker"
+safe_copy "$DOTFILES/walker/config.toml" "$HOME/.config/walker/config.toml"
+safe_copy "$DOTFILES/walker/themes/custom/style.css" "$HOME/.config/walker/themes/custom/style.css"
 
 #  (specs only)
-mkdir -p ~/.config/
-cp "$DOTFILES//config" ~/.config/art/
+echo ":: "
+safe_copy "$DOTFILES//config" "$HOME/.config//config"
 
 # Fish
-mkdir -p ~/.config/fish
-cp "$DOTFILES/fish/config.fish" ~/.config/fish/
+echo ":: fish"
+safe_copy "$DOTFILES/fish/config.fish" "$HOME/.config/fish/config.fish"
 
 # Set Ghostty as default terminal
 omarchy default terminal ghostty 2>/dev/null || true
@@ -90,6 +122,8 @@ if command -v jq &>/dev/null && [ -f "$DOTFILES/vscode/terminal-colors.json" ]; 
   SETTINGS_FILE="$HOME/.config/Code/User/settings.json"
   mkdir -p "$(dirname "$SETTINGS_FILE")"
   [ -f "$SETTINGS_FILE" ] || printf '{}\n' >"$SETTINGS_FILE"
+  # Backup the existing settings before merging, then jq writes to .tmp and moves it in.
+  cp -a "$SETTINGS_FILE" "$SETTINGS_FILE.bak-$TS" 2>/dev/null || true
   jq -s '.[0] * .[1]' "$SETTINGS_FILE" "$DOTFILES/vscode/terminal-colors.json" >"$SETTINGS_FILE.tmp" \
     && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
   echo "Merged monochrome terminal colors into editor settings"
