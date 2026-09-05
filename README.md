@@ -134,7 +134,6 @@ cp <archivo-cambiado> "$T/..." && cp <archivo-cambiado> "$C/..."
 
 ***REMOVED***
 ***REMOVED***
-- El logo se renderiza con la fuente del terminal (JetBrainsMono Nerd Font). Si querés el braille más grueso: `FantasqueSansM Nerd Font`.
 ***REMOVED***
 
 ## Cursor (Ghostty)
