@@ -16,7 +16,7 @@ return {
         cursor = "#eaeaea",
         line = "#1a1a1a",
         visual = "#2a2a2a",
-        error = "#7c7c7c",
+        error = "#9a5050",
         warning = "#a0a0a0",
         info = "#808080",
         hint = "#868686",
