@@ -37,9 +37,18 @@ safe_copy_dir() {
 echo "Setting up Theme OmarchyOS companion configs..."
 echo "Backups (if any) use suffix .bak-$TS"
 
-# Cursor theme (Bibata-Modern-Classic, ships with the theme)
+# Cursor + icon themes (shipped in-repo — fully offline, no downloads needed)
 echo ":: icons"
 safe_copy_dir "$DOTFILES/icons/Bibata-Modern-Classic" "$HOME/.icons"
+
+# Colloid-Grey-Dark: pure local copy from the repo bundle.
+# Regenerable asset — replace instead of backing up (no .bak residue).
+if [ -d "$DOTFILES/icons/Colloid-Grey-Dark" ]; then
+  rm -rf "$HOME/.local/share/icons/Colloid-Grey-Dark"
+  cp -r "$DOTFILES/icons/Colloid-Grey-Dark" "$HOME/.local/share/icons/"
+else
+  echo "  warning: Colloid-Grey-Dark bundle missing from theme"
+fi
 
 # Waybar (style only — the config.jsonc/modules stay user-owned, NOT themed)
 echo ":: waybar (style.css only)"
@@ -136,10 +145,25 @@ if command -v gsettings &>/dev/null; then
   # Apply the rest via gsettings (no Omarchy equivalent: cursor, fonts, window theme)
   gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Classic" || true
   gsettings set org.gnome.desktop.interface cursor-size 16 || true
+  gsettings set org.gnome.desktop.interface icon-theme "Colloid-Grey-Dark" || true
   gsettings set org.gnome.desktop.interface monospace-font-name "JetBrainsMono Nerd Font 10" || true
   gsettings set org.gnome.desktop.interface font-name "Inter 10.5" || true
   gsettings set org.gnome.desktop.wm.preferences theme "Adwaita-dark" || true
 fi
+
+# theme-set hook: re-apply companion configs when the theme is (re)selected
+# (after the first setup.sh run, switching themes and back needs no manual step)
+echo ":: theme-set hook"
+HOOK_DIR="$HOME/.config/omarchy/hooks/theme-set.d"
+mkdir -p "$HOOK_DIR"
+cat >"$HOOK_DIR/omarchyos.sh" <<'HOOK'
+#!/bin/bash
+# Re-apply Theme OmarchyOS companion configs when selected via theme switcher
+CURRENT="$(cat "$HOME/.config/omarchy/current/theme.name" 2>/dev/null)"
+if [[ "$CURRENT" == "theme-omarchyos" && -f "$HOME/.config/omarchy/themes/theme-omarchyos/setup.sh" ]]; then
+  bash "$HOME/.config/omarchy/themes/theme-omarchyos/setup.sh" >/dev/null 2>&1
+fi
+HOOK
 
 # Restart waybar
 killall -SIGUSR2 waybar 2>/dev/null || (killall waybar 2>/dev/null; sleep 0.5; nohup waybar &>/dev/null &)

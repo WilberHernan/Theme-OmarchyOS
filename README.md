@@ -7,14 +7,16 @@ Monochrome dark theme for Omarchy. Clean, modern, Bibata cursor.
 Install these once before the theme:
 
 ```bash
-yay -S yaru-icon-theme nerd-fonts-jetbrains-mono
 sudo pacman -S ghostty hyprlock
 ```
 
-> El cursor **Bibata-Modern-Classic** ya viene incluido en el theme (no necesita instalarse aparte).
-> Las fuentes **Gunplay** e **Inter** vienen bundleadas en el theme (se instalan solas desde `fonts/`).
+> **Nada más se descarga.** El icon theme **Colloid-Grey-Dark**, el cursor
+> **Bibata-Modern-Classic** y las fuentes **Gunplay** e **Inter** vienen todos
+> bundleados dentro del theme (`setup.sh` los copia desde el repo).
 > `Adwaita-dark` viene con `gtk-engine`, ya debería estar instalado en Omarchy.
+> **JetBrainsMono Nerd Font** viene con Omarchy (es la fuente default del sistema).
 > `hyprlock` viene con Omarchy, pero si no lo tenés: `sudo pacman -S hyprlock`.
+> `ghostty` solo si no lo tenés (Foot es el default de Omarchy).
 
 ## Install
 
@@ -28,6 +30,9 @@ omarchy theme set theme-omarchyos
 
 > `setup.sh` hace **backup automático** de cualquier config que pise
 > (`.bak-<timestamp>` junto al archivo). Re-ejecutarlo es seguro e idempotente.
+> Además instala un **hook** en `~/.config/omarchy/hooks/theme-set.d/`: después
+> de la primera corrida, si cambiás de theme y volvés a `theme-omarchyos`
+> (switcher con `T`), las configs complementarias se re-aplican solas.
 
 ## ⚠️ REGLAS DE ORO — leé esto antes de tocar el theme
 
@@ -84,15 +89,16 @@ cp <archivo-cambiado> "$T/..." && cp <archivo-cambiado> "$C/..."
 - Copia `swayosd/` (OSD premium glass)
 - Copia configs de terminales (Alacritty, Kitty, Ghostty) + shaders del cursor (smear Gentle-AI)
 - Copia `gtk-3.0/` y `gtk-4.0/` (tema, iconos, cursor, inputs redondeados)
-- Copia `icons/` (cursor Bibata-Modern-Classic)
+- Copia `icons/` (cursor Bibata-Modern-Classic + icon theme Colloid-Grey-Dark a `~/.local/share/icons` — 100% offline, sin descargar nada)
+- Instala hook de `theme-set` para re-aplicarse solo al cambiar de theme
 - Copia `walker/` (centrado, 13px, subtexto al seleccionar)
-- - Copia `fish/config.fish` (terminal limpia al abrir)
+- Copia `fish/config.fish` (terminal limpia al abrir)
 - Instala las fuentes **Gunplay** (reloj del lockscreen) e **Inter** (interfaz)
 - Copia script de bloqueo propio (15s antes de apagar pantalla)
 - Setea Ghostty como terminal default
 - Enlaza settings de code-oss → VS Code (para que el colorTheme aplique en code-oss)
 - Fusiona colores monocromos en la terminal integrada del editor (`dotfiles/vscode/terminal-colors.json`)
-- Aplica `gsettings` (cursor Bibata 16, fuentes Inter 10.5 / JetBrainsMono 10, window theme)
+- Aplica `gsettings` (cursor Bibata 16, icon theme Colloid-Grey-Dark, fuentes Inter 10.5 / JetBrainsMono 10, window theme)
 
 ## Lockscreen
 
@@ -119,6 +125,7 @@ cp <archivo-cambiado> "$T/..." && cp <archivo-cambiado> "$C/..."
 | `vscode/terminal-colors.json` | Colores ANSI monocromos para la terminal integrada del editor |
 | `gtk-3.0/settings.ini` | Adwaita-dark, Colloid-Grey-Dark, Bibata 16 |
 | `icons/Bibata-Modern-Classic/` | Cursor Bibata Modern Classic incluido en el theme |
+| `icons/Colloid-Grey-Dark/` | Icon theme completo incluido en el theme (carpetas y apps grises) |
 | `gtk-3.0/gtk.css` | caret-color, inputs redondeados |
 | `gtk-4.0/gtk.css` | caret-color |
 | `walker/config.toml` | Centrado, padding 80x300 |
