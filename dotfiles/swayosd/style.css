@@ -9,9 +9,9 @@ window {
   border-radius: 12px;                /* elegant, not square */
   opacity: 0.92;
 
-  /* Soft glass: translucent surface + subtle catch-light border */
+  /* Soft glass: translucent surface + subtle monochrome catch-light border */
   background-color: rgba(18, 18, 18, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(190, 190, 190, 0.12);
 }
 
 label {
