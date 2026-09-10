@@ -117,7 +117,7 @@ cp <archivo-cambiado> "$T/..." && cp <archivo-cambiado> "$C/..."
 | `mako/config` | Notificaciones glass, top-center, banner pegado arriba |
 | `swayosd/style.css` | OSD premium glass |
 | `vscode/terminal-colors.json` | Colores ANSI monocromos para la terminal integrada del editor |
-| `gtk-3.0/settings.ini` | Adwaita-dark, Papirus-Dark, Bibata 16 |
+| `gtk-3.0/settings.ini` | Adwaita-dark, Colloid-Grey-Dark, Bibata 16 |
 | `icons/Bibata-Modern-Classic/` | Cursor Bibata Modern Classic incluido en el theme |
 | `gtk-3.0/gtk.css` | caret-color, inputs redondeados |
 | `gtk-4.0/gtk.css` | caret-color |
