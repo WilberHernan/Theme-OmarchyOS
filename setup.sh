@@ -133,11 +133,15 @@ if command -v jq &>/dev/null && [ -f "$DOTFILES/vscode/terminal-colors.json" ]; 
   SETTINGS_FILE="$HOME/.config/Code/User/settings.json"
   mkdir -p "$(dirname "$SETTINGS_FILE")"
   [ -f "$SETTINGS_FILE" ] || printf '{}\n' >"$SETTINGS_FILE"
-  # Backup the existing settings before merging, then jq writes to .tmp and moves it in.
-  cp -a "$SETTINGS_FILE" "$SETTINGS_FILE.bak-$TS" 2>/dev/null || true
-  jq -s '.[0] * .[1]' "$SETTINGS_FILE" "$DOTFILES/vscode/terminal-colors.json" >"$SETTINGS_FILE.tmp" \
-    && mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
-  echo "Merged monochrome terminal colors into editor settings"
+  # Merge to .tmp first; only replace (with backup) when the merge actually changes something.
+  jq -s '.[0] * .[1]' "$SETTINGS_FILE" "$DOTFILES/vscode/terminal-colors.json" >"$SETTINGS_FILE.tmp"
+  if ! cmp -s "$SETTINGS_FILE" "$SETTINGS_FILE.tmp"; then
+    cp -a "$SETTINGS_FILE" "$SETTINGS_FILE.bak-$TS" 2>/dev/null || true
+    mv "$SETTINGS_FILE.tmp" "$SETTINGS_FILE"
+    echo "Merged monochrome terminal colors into editor settings"
+  else
+    rm -f "$SETTINGS_FILE.tmp"
+  fi
 fi
 
 # Apply GTK settings (safe: no crash if gsettings unavailable)
