@@ -1,0 +1,124 @@
+# Theme OmarchyOS — Shell surface roles
+# Defines colors and styling for the Omarchy Quickshell desktop.
+# All values use the monochrome palette from colors.toml.
+
+[bar]
+background = "#121212"
+foreground = "#bebebe"
+border = "#525252"
+border-width = 1
+border-alpha = 0.5
+
+[controls]
+normal-color = "#bebebe"
+normal-border = "#525252"
+normal-border-width = 1
+normal-border-alpha = 0.4
+
+hover-color = "#eaeaea"
+hover-border = "#808080"
+hover-border-width = 1
+hover-border-alpha = 0.5
+
+focus-color = "#eaeaea"
+focus-border = "#808080"
+focus-border-width = 2
+focus-border-alpha = 0.6
+
+active-color = "#808080"
+active-border = "#bebebe"
+active-border-width = 1
+active-border-alpha = 0.5
+
+disabled-color = "#525252"
+disabled-border = "#525252"
+disabled-border-width = 1
+disabled-border-alpha = 0.3
+
+hover-cursor-color = "#bebebe"
+hover-cursor-border = "#525252"
+hover-cursor-border-width = 1
+hover-cursor-border-alpha = 0.25
+
+[popups]
+background = "#1a1a1a"
+foreground = "#bebebe"
+border = "#525252"
+border-width = 1
+border-alpha = 0.5
+
+[tooltip]
+background = "#1a1a1a"
+foreground = "#bebebe"
+border = "#525252"
+border-width = 1
+border-alpha = 0.5
+
+[notifications]
+background = "#1e1e1e"
+foreground = "#bebebe"
+border = "#333333"
+border-width = 0
+border-alpha = 0.0
+
+[launcher]
+background = "#121212"
+foreground = "#bebebe"
+border = "#525252"
+border-width = 1
+border-alpha = 0.4
+selected-background = "#1a1a1a"
+selected-foreground = "#eaeaea"
+selected-border = "#808080"
+selected-border-width = 1
+selected-border-alpha = 0.5
+placeholder = "#525252"
+
+[menu]
+background = "#121212"
+foreground = "#bebebe"
+border = "#525252"
+border-width = 1
+border-alpha = 0.4
+selected-background = "#1a1a1a"
+selected-foreground = "#eaeaea"
+selected-border = "#808080"
+selected-border-width = 1
+selected-border-alpha = 0.5
+
+[polkit]
+background = "#121212"
+foreground = "#bebebe"
+border = "#525252"
+border-width = 1
+border-alpha = 0.5
+border-active = "#808080"
+border-active-width = 2
+
+[lock]
+background = "#121212"
+foreground = "#bebebe"
+border = "#525252"
+border-width = 1
+border-alpha = 0.4
+text = "#eaeaea"
+placeholder = "#bebebe"
+
+[image-picker]
+background = "#121212"
+foreground = "#bebebe"
+border = "#525252"
+border-width = 1
+border-alpha = 0.4
+
+[spacing]
+barHeight = 36
+barPadding = 8
+popupPadding = 12
+menuPadding = 8
+launcherPadding = 12
+notificationPadding = 10
+
+[font]
+family = "Inter"
+scale = 1.0
