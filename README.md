@@ -10,13 +10,13 @@ Install these once before the theme:
 sudo pacman -S ghostty hyprlock
 ```
 
-> **Nada más se descarga.** El icon theme **Colloid-Grey-Dark**, el cursor
-> **Bibata-Modern-Classic** y las fuentes **Gunplay** e **Inter** vienen todos
-> bundleados dentro del theme (`setup.sh` los copia desde el repo).
-> `Adwaita-dark` viene con `gtk-engine`, ya debería estar instalado en Omarchy.
-> **JetBrainsMono Nerd Font** viene con Omarchy (es la fuente default del sistema).
-> `hyprlock` viene con Omarchy, pero si no lo tenés: `sudo pacman -S hyprlock`.
-> `ghostty` solo si no lo tenés (Foot es el default de Omarchy).
+> **Nothing else is downloaded.** The icon theme **Colloid-Grey-Dark**, the cursor
+> **Bibata-Modern-Classic**, and the fonts **Gunplay** and **Inter** are all
+> bundled inside the theme (`setup.sh` copies them from the repo).
+> `Adwaita-dark` comes with `gtk-engine`, should already be installed on Omarchy.
+> **JetBrainsMono Nerd Font** comes with Omarchy (system default font).
+> `hyprlock` comes with Omarchy, but if you don't have it: `sudo pacman -S hyprlock`.
+> `ghostty` only if you don't have it (Foot is Omarchy's default).
 
 ## Install
 
@@ -26,122 +26,168 @@ omarchy theme set theme-omarchyos
 ~/.config/omarchy/themes/theme-omarchyos/setup.sh
 ```
 
-**Cerrar sesión y volver a entrar** para que todo tome efecto.
+**Log out and back in** for everything to take effect.
 
-> `setup.sh` hace **backup automático** de cualquier config que pise
-> (`.bak-<timestamp>` junto al archivo). Re-ejecutarlo es seguro e idempotente.
-> Además instala un **hook** en `~/.config/omarchy/hooks/theme-set.d/`: después
-> de la primera corrida, si cambiás de theme y volvés a `theme-omarchyos`
-> (switcher con `T`), las configs complementarias se re-aplican solas.
+> `setup.sh` makes **automatic backups** of any config it overwrites
+> (`.bak-<timestamp>` next to the file). Re-running it is safe and idempotent.
+> It also installs a **hook** in `~/.config/omarchy/hooks/theme-set.d/`: after
+> the first run, if you switch themes and come back to `theme-omarchyos`
+> (switcher with `T`), the companion configs re-apply automatically.
 
-## ⚠️ REGLAS DE ORO — leé esto antes de tocar el theme
+## What the theme provides
 
-Omarchy mantiene **TRES copias** de los archivos del theme. Los errores
-"mágicos" (se perdió el blur, volvió el negro, el tema revirtió) casi siempre
-vienen de actualizar UNA copia y olvidar las otras dos:
+### Applied automatically by Omarchy
 
-| Copia | Ruta | Quién la usa |
+These files live in the theme root and are consumed by `omarchy theme set`:
+
+| File | What it styles |
+|------|---------------|
+| `colors.toml` | Palette for the shell, terminals, editors, browser, and all apps |
+| `shell.toml` | Omarchy shell surfaces: top bar, menu, notifications, launcher, lock |
+| `waybar.css` | Top bar appearance (transparent, Inter 11px, monochrome) |
+| `walker.css` | Application launcher (glass card, 13px, monochrome) |
+| `swayosd.css` | Volume/brightness OSD (glass, rounded) |
+| `mako.ini` | Notification daemon config |
+| `btop.theme` | System monitor colors |
+| `chromium.theme` | Browser theme color |
+| `icons.theme` | Icon set name (`Colloid-Grey-Dark`) |
+| `backgrounds/` | Desktop wallpapers |
+| `preview.png` / `preview-unlock.png` | Theme selector previews |
+
+### Applied by `setup.sh` (files Omarchy drops from git-installed themes)
+
+For security, Omarchy drops executable/config files from themes installed via `omarchy theme install`:
+
+| File | Why it's dropped | How we work around it |
+|------|------------------|----------------------|
+| `hypr/*.lua` | `.lua` is executable code | `setup.sh` copies from `dotfiles/hypr/` |
+| Terminal configs (`kitty.conf`, `alacritty.toml`, `ghostty.conf`) | They name the shell program | `setup.sh` copies from `dotfiles/` |
+| `neovim.lua` | `.lua` is executable code | `setup.sh` copies to `~/.config/nvim/lua/plugins/theme.lua` |
+| Fonts (`Gunplay`, `Inter`) | Not part of theme system | `setup.sh` copies to `~/.local/share/fonts/` |
+| Icon bundles (`Bibata`, `Colloid`) | Not part of theme system | `setup.sh` copies to `~/.icons/` and `~/.local/share/icons/` |
+| `scripts/omarchy-system-lock` | Executable script | `setup.sh` copies to `~/.local/share/omarchy/bin/` |
+| Ghostty cursor shaders | Custom GLSL effects | `setup.sh` copies to `~/.config/ghostty/shaders/` |
+| `fish/config.fish` | Shell config | `setup.sh` copies to `~/.config/fish/` |
+| `uwsm/env` | Session environment | `setup.sh` copies to `~/.config/uwsm/` |
+| VS Code terminal colors | Editor integration | `setup.sh` merges into settings.json |
+
+### VS Code extension
+
+The theme references the **Monochromator Dark** extension (`beem.monochromator`).
+Install it manually in VS Code:
+
+```bash
+code --install-extension beem.monochromator
+```
+
+Or search "Monochromator" in the Extensions panel.
+
+## ⚠️ GOLDEN RULES — read this before editing the theme
+
+Omarchy maintains **THREE copies** of theme files. "Magic" errors (blur lost,
+black screen, theme reverted) almost always come from updating ONE copy and
+forgetting the other two:
+
+| Copy | Path | Who uses it |
 |---|---|---|
-| 1. Repo (fuente de verdad) | `~/.config/omarchy/themes/theme-omarchyos/` | git, backup, instalación en otra PC |
-| 2. Plantilla activa | `~/.config/omarchy/current/theme/` | Omarchy la copia completo al **re-aplicar** el theme |
-| 3. Configs vivos | `~/.config/hypr/`, `~/.config/walker/`, `~/.config/waybar/`, etc. | El sistema corre con esto |
+| 1. Repo (source of truth) | `~/.config/omarchy/themes/theme-omarchyos/` | git, backup, install on another PC |
+| 2. Active template | `~/.config/omarchy/current/theme/` | Omarchy copies this whole folder when **re-applying** the theme |
+| 3. Live configs | `~/.config/hypr/`, `~/.config/walker/`, `~/.config/waybar/`, etc. | The system runs with these |
 
-**Cuando cambies algo, sincronizá las 3 copias:**
+**When changing something, sync all 3 copies:**
 ```bash
 T=~/.config/omarchy/themes/theme-omarchyos
 C=~/.config/omarchy/current/theme
-cp <archivo-cambiado> "$T/..." && cp <archivo-cambiado> "$C/..."
+cp <changed-file> "$T/..." && cp <changed-file> "$C/..."
 ```
 
-- Si editás **solo el repo** → el próximo `omarchy theme set` vuelve a la
-  versión vieja y "pierde" tu trabajo.
-- Si editás **solo la copia viva** → se pierde al re-aplicar o reinstalar.
-- `setup.sh` solo copia DESDE el repo HACIA los configs vivos: los archivos
-  que omarchy maneja (loader `hyprland.lua`, `config.jsonc` de waybar) **no
-  se tocan** y pertenecen a Omarchy, no al theme.
+- Editing **only the repo** → next `omarchy theme set` reverts to the old version
+- Editing **only the live copy** → lost on re-apply or reinstall
+- `setup.sh` only copies FROM the repo TO live configs: files managed by Omarchy (waybar `config.jsonc`, hyprland loader) are **not touched** and belong to Omarchy, not the theme
 
-## Errores conocidos y cómo se solucionaron (no repetirlos)
+## Known errors and how they were solved (don't repeat)
 
-| Error | Causa | Fix aplicado |
+| Error | Cause | Fix applied |
 |---|---|---|
-| Walker se veía negro sin blur | La layer rule de blur vivía solo en la copia viva y el repo; `current/theme` no la tenía → al re-aplicar, la perdía | Regla `hl.layer_rule` (walker + notificaciones) en `looknfeel.lua` sincronizada en las 3 copias |
-| Waybar como franja oscura | Tenía 0.55 de opacidad pero **sin blur** → se veía un rectángulo opaco | Probamos blur + glass (commit `49eabb1`), luego el usuario decidió: **waybar 100% transparente, sin blur** (commit `6548fd0`) |
-| Ocultar el input de búsqueda del walker | Falla: ni `display:none` css ni el flag nativo `-n/--nosearch` lo ocultan de forma confiable; además `--nosearch` rompía el flujo del servicio | **Revertido** (commit `7d5c98d`). No volver a intentarlo |
-| `mako.ini` raíz viejo (sólido `#121212`) | Omarchy consume `mako.ini` de la raíz al re-aplicar → hacía retroceder el glass de notificaciones | Actualizado al mismo glass que `dotfiles/mako/config` |
-| Cursor 20 vs 16 | `current/theme` estaba congelado con cursor 20; el sistema usa 16 | Sincronizado `envs.lua` + `uwsm/env` a cursor 16 en las 3 copias |
+| Walker looked black without blur | Blur layer rule lived only in live copy and repo; `current/theme` didn't have it → lost on re-apply | `hl.layer_rule` (walker + notifications) in `looknfeel.lua` synced across all 3 copies |
+| Waybar as dark band | Had 0.55 opacity but **no blur** → opaque rectangle | Tried blur + glass (commit `49eabb1`), then user decided: **waybar 100% transparent, no blur** (commit `6548fd0`) |
+| Hiding walker search input | Neither `display:none` CSS nor native `-n/--nosearch` flag reliably hide it; `--nosearch` broke service flow | **Reverted** (commit `7d5c98d`). Don't try again |
+| Old `mako.ini` at root (solid `#121212`) | Omarchy consumed `mako.ini` from root on re-apply → reverted notification glass | Updated to same glass as `dotfiles/mako/config` |
+| Cursor 20 vs 16 | `current/theme` was frozen with cursor 20; system uses 16 | Synced `envs.lua` + `uwsm/env` to cursor 16 across all 3 copies |
 
-### Comandos seguros
+### Safe commands
 
-- Reiniciar walker: `omarchy-restart-walker` (NO `nohup walker` directo — rompe el `@import` del CSS por HOME incorrecto).
-- Reiniciar waybar: `omarchy-restart-waybar`.
-- Recargar una regla de Hyprland al vuelo: `hyprctl eval '...'` (el `hyprctl reload` **no** re-evalúa el Lua de `looknfeel.lua`).
-- Restaurar desde `current/theme` sin tocar el repo: `omarchy theme set theme-omarchyos` (usa la copia 2 tal cual está).
+- Restart walker: `omarchy-restart-walker` (DO NOT `nohup walker` directly — breaks CSS `@import` due to wrong HOME)
+- Restart waybar: `omarchy-restart-waybar`
+- Reload a Hyprland rule on the fly: `hyprctl eval '...'` (`hyprctl reload` does **not** re-evaluate Lua from `looknfeel.lua`)
+- Restore from `current/theme` without touching the repo: `omarchy theme set theme-omarchyos` (uses copy 2 as-is)
 
 ## What `setup.sh` does
 
-- Copia `looknfeel.lua` (11 animaciones spring/bezier, rounding 8, blur layer rules)
-- Copia `envs.lua` (variables de cursor 16)
-- Copia `hyprlock.conf` (reloj estilo Hyadum, input invisible, desbloqueo animado)
-- Copia `uwsm/env` (variables de cursor persistentes entre sesiones)
-- Copia `waybar/style.css` (Inter 11, sin bold, **transparente, sin blur**)
-- **No** toca `waybar/config.jsonc` (módulos) — es de Omarchy; los módulos y el clima se quitan/editan a mano
-- Copia `mako/config` (glass, top-center, banner pegado arriba)
-- Copia `swayosd/` (OSD premium glass)
-- Copia configs de terminales (Alacritty, Kitty, Ghostty) + shaders del cursor (smear Gentle-AI)
-- Copia `gtk-3.0/` y `gtk-4.0/` (tema, iconos, cursor, inputs redondeados)
-- Copia `icons/` (cursor Bibata-Modern-Classic + icon theme Colloid-Grey-Dark a `~/.local/share/icons` — 100% offline, sin descargar nada)
-- Instala hook de `theme-set` para re-aplicarse solo al cambiar de theme
-- Copia `walker/` (centrado, 13px, subtexto al seleccionar)
-- Copia `fish/config.fish` (terminal limpia al abrir)
-- Instala las fuentes **Gunplay** (reloj del lockscreen) e **Inter** (interfaz)
-- Copia script de bloqueo propio (15s antes de apagar pantalla)
-- Setea Ghostty como terminal default
-- Enlaza settings de code-oss → VS Code (para que el colorTheme aplique en code-oss)
-- Fusiona colores monocromos en la terminal integrada del editor (`dotfiles/vscode/terminal-colors.json`)
-- Aplica `gsettings` (cursor Bibata 16, icon theme Colloid-Grey-Dark, fuentes Inter 10.5 / JetBrainsMono 10, window theme)
+- Copies `looknfeel.lua` (11 spring/bezier animations, rounding 8, blur layer rules)
+- Copies `envs.lua` (cursor variables, size 16)
+- Copies `hyprlock.conf` (Hyadum-style clock, invisible input, animated unlock)
+- Copies `uwsm/env` (cursor envs persistent across sessions)
+- Copies `waybar/style.css` (Inter 11, no bold, **transparent, no blur**)
+- **Does not** touch `waybar/config.jsonc` (modules) — belongs to Omarchy; modules and weather are removed/edited manually
+- Copies `mako/config` (glass, top-center, banner stuck to top)
+- Copies `swayosd/` (premium glass OSD)
+- Copies terminal configs (Alacritty, Kitty, Ghostty) + cursor shaders (Gentle-AI smear)
+- Copies `gtk-3.0/` and `gtk-4.0/` (theme, icons, cursor, rounded inputs)
+- Copies `icons/` (cursor Bibata-Modern-Classic + icon theme Colloid-Grey-Dark to `~/.local/share/icons` — 100% offline, no downloads)
+- Installs theme-set hook for auto-re-application on theme switch
+- Copies `walker/` (centered, 13px, subtext on select)
+- Copies `fish/config.fish` (clean terminal on open)
+- Installs fonts **Gunplay** (lockscreen clock) and **Inter** (UI)
+- Copies custom lock script (15s display-off delay)
+- Sets Ghostty as default terminal
+- Symlinks code-oss → VS Code settings (so colorTheme applies in code-oss too)
+- Merges monochrome colors into editor integrated terminal (`dotfiles/vscode/terminal-colors.json`)
+- Applies `gsettings` (cursor Bibata 16, icon theme Colloid-Grey-Dark, fonts Inter 10.5 / JetBrainsMono 10, window theme)
 
 ## Lockscreen
 
-- Reloj con fuente **Gunplay** estilo Hyadum (hora grande centrada)
-- **Sin campo de contraseña visible** — solo escribís y desbloqueás
-- Animación suave al bloquear y desbloquear (fade, curva apple)
-- La pantalla se apaga a los **15 segundos** de bloqueada
+- Clock with **Gunplay** font in Hyadum style (large centered hour)
+- **No visible password field** — just type and unlock
+- Smooth lock/unlock animation (fade, Apple curve)
+- Screen turns off after **15 seconds** of being locked
+
+## Glass structure (current look)
+
+| Component | Background | Blur | Border |
+|---|---|---|---|
+| Walker launcher | `rgba(18,18,18,0.55)` | Yes (layer rule `walker`, `ignore_alpha=0.4`) | `rgba(255,255,255,0.14)` |
+| Notifications (mako) | `rgba(30,30,30,0.50)` | Yes | none, radius 12 |
+| OSD (swayosd) | `rgba(18,18,18,0.55)` | No (small window) | `rgba(255,255,255,0.10)` |
+| Waybar | **transparent (alpha 0)** | **No** | none |
 
 ## Dotfiles
 
-| Archivo | Qué hace |
+| File | What it does |
 |---|---|
-| `hypr/hyprland.lua` | Loader gestionado por Omarchy (no se incluye en el theme) |
-| `hypr/envs.lua` | `XCURSOR_THEME`, `HYPRCURSOR_THEME`, tamaño 16 |
-| `hypr/looknfeel.lua` | 4 curvas, 11 animaciones, rounding 8, blur layer rules |
-| `hypr/hyprlock.conf` | Lockscreen Hyadum-style: Gunplay clock, fade animation |
-| `scripts/omarchy-system-lock` | Lock propio: 15s display-off delay |
-| `fonts/Gunplay_Regular.otf` | Fuente Gunplay bundleada para el reloj |
-| `fonts/Inter-VariableFont_slnt,wght.ttf` | Fuente Inter UI bundleada |
-| `uwsm/env` | Cursor envs persistentes via UWSM |
-| `waybar/style.css` | Wrapper del usuario que hace `@import` a los colores del theme |
-| `mako/config` | Notificaciones glass, top-center, banner pegado arriba |
-| `swayosd/style.css` | OSD premium glass |
-| `vscode/terminal-colors.json` | Colores ANSI monocromos para la terminal integrada del editor |
+| `hypr/hyprland.lua` | Loader managed by Omarchy (not included in theme) |
+| `hypr/envs.lua` | `XCURSOR_THEME`, `HYPRCURSOR_THEME`, size 16 |
+| `hypr/looknfeel.lua` | 4 curves, 11 animations, rounding 8, blur layer rules |
+| `hypr/hyprlock.conf` | Hyadum-style lockscreen: Gunplay clock, fade animation |
+| `scripts/omarchy-system-lock` | Custom lock: 15s display-off delay |
+| `fonts/Gunplay_Regular.otf` | Bundled Gunplay font for lockscreen clock |
+| `fonts/Inter-VariableFont_slnt,wght.ttf` | Bundled Inter UI font |
+| `uwsm/env` | Cursor envs persistent via UWSM |
+| `waybar/style.css` | Wrapper that `@import`s theme colors |
+| `mako/config` | Glass notifications, top-center, banner stuck to top |
+| `swayosd/style.css` | Premium glass OSD |
+| `vscode/terminal-colors.json` | Monochrome ANSI colors for editor integrated terminal |
 | `gtk-3.0/settings.ini` | Adwaita-dark, Colloid-Grey-Dark, Bibata 16 |
-| `icons/Bibata-Modern-Classic/` | Cursor Bibata Modern Classic incluido en el theme |
-| `icons/Colloid-Grey-Dark/` | Icon theme completo incluido en el theme (carpetas y apps grises) |
-| `gtk-3.0/gtk.css` | caret-color, inputs redondeados |
+| `icons/Bibata-Modern-Classic/` | Bibata Modern Classic cursor included in theme |
+| `icons/Colloid-Grey-Dark/` | Full icon theme included in theme (grey folders and apps) |
+| `gtk-3.0/gtk.css` | caret-color, rounded inputs |
 | `gtk-4.0/gtk.css` | caret-color |
-| `walker/config.toml` | Centrado, padding 80x300 |
-| `walker/themes/custom/style.css` | 13px font, subtext en select, 84% box |
-| `shaders/*.glsl` | Shaders cursor: smear Gentle-AI (default), blaze alternativos |
-| `fish/config.fish` | Config de fish (terminal limpia al abrir) |
+| `walker/config.toml` | Centered, padding 80x300 |
+| `walker/themes/custom/style.css` | 13px font, subtext on select, 84% box |
+| `shaders/*.glsl` | Cursor shaders: Gentle-AI smear (default), blaze alternatives |
+| `fish/config.fish` | Fish config (clean terminal on open) |
+| `neovim.lua` | Monochrome colorscheme for Neovim (LazyVim) |
 
-- `cursor-style = "block"` sin blink + **cursor smear** Gentle-AI (`cursor_smear_gentleman.glsl`).
-- Alternativas incluidas: `cursor_blaze.glsl` (estela ámbar) y `cursor_blaze_2.glsl` (cola amarilla, solo saltos largos).
-- Para cambiar: editá `custom-shader` en `dotfiles/config` y reinstalá.
-
-## Estructura del glass (look actual)
-
-| Componente | Fondo | Blur | Borde |
-|---|---|---|---|
-| Walker launcher | `rgba(18,18,18,0.55)` | Sí (layer rule `walker`, `ignore_alpha=0.4`) | `rgba(255,255,255,0.14)` |
-| Notificaciones (mako) | `rgba(30,30,30,0.50)` | Sí | sin borde, radio 12 |
-| OSD (swayosd) | `rgba(18,18,18,0.55)` | No (ventana pequeña) | `rgba(255,255,255,0.10)` |
-| Waybar | **transparente (alpha 0)** | **No** | sin borde |
+- `cursor-style = "block"` no blink + **cursor smear** Gentle-AI (`cursor_smear_gentleman.glsl`).
+- Alternatives included: `cursor_blaze.glsl` (amber trail) and `cursor_blaze_2.glsl` (yellow tail, long jumps only).
+- To change: edit `custom-shader` in `dotfiles/config` and reinstall.
