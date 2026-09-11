@@ -1,6 +1,17 @@
 #!/bin/bash
-# Theme OmarchyOS — full setup script
+# Theme OmarchyOS — companion setup script
 # Run this after `omarchy theme install` + `omarchy theme set theme-omarchyos`
+#
+# What Omarchy handles automatically (via colors.toml + shell.toml):
+#   - Shell colors (top bar, menu, notifications, launcher, lock screen)
+#   - Waybar / Walker / SwayOSD base styles (from theme root)
+#   - btop, Chromium, icon theme, backgrounds
+#
+# What this script handles (files Omarchy drops from git-installed themes):
+#   - Hyprland Lua configs (.lua files are code — dropped for security)
+#   - Terminal configs (they name the shell program — dropped)
+#   - Fonts, icons, scripts, fish, mako, GTK, walker config, shaders
+#   - Neovim colorscheme, VS Code terminal colors
 #
 # SAFETY: every file that overwrites an existing user config first makes a
 # timestamped backup in ~/.config/<app>/*.bak-<timestamp>. Re-running this
@@ -23,7 +34,7 @@ safe_copy() {
   cp "$src" "$dst"
 }
 
-# Recursive copy for directories (cursor theme).
+# Recursive copy for directories (cursor / icon themes).
 safe_copy_dir() {
   local src="$1" dst_parent="$2"
   mkdir -p "$dst_parent"
@@ -81,6 +92,11 @@ safe_copy "$DOTFILES/hypr/looknfeel.lua" "$HOME/.config/hypr/looknfeel.lua"
 safe_copy "$DOTFILES/hypr/envs.lua" "$HOME/.config/hypr/envs.lua"
 safe_copy "$DOTFILES/hypr/hyprlock.conf" "$HOME/.config/hypr/hyprlock.conf"
 
+# Neovim colorscheme (Omarchy drops .lua files from git-installed themes)
+echo ":: neovim"
+mkdir -p "$HOME/.config/nvim/lua/plugins"
+safe_copy "$DOTFILES/neovim.lua" "$HOME/.config/nvim/lua/plugins/theme.lua"
+
 # Fonts (Gunplay for hyprlock clock, Inter for the UI) — additive, no overwrite
 echo ":: fonts"
 mkdir -p "$HOME/.local/share/fonts"
@@ -132,8 +148,8 @@ fi
 if command -v jq &>/dev/null && [ -f "$DOTFILES/vscode/terminal-colors.json" ]; then
   SETTINGS_FILE="$HOME/.config/Code/User/settings.json"
   mkdir -p "$(dirname "$SETTINGS_FILE")"
-  [ -f "$SETTINGS_FILE" ] || printf '{}\n' >"$SETTINGS_FILE"
-  # Merge to .tmp first; only replace (with backup) when the merge actually changes something.
+  [ -f "$SETTINGS_FILE" ] || printf '{}
+' >"$SETTINGS_FILE"
   jq -s '.[0] * .[1]' "$SETTINGS_FILE" "$DOTFILES/vscode/terminal-colors.json" >"$SETTINGS_FILE.tmp"
   if ! cmp -s "$SETTINGS_FILE" "$SETTINGS_FILE.tmp"; then
     cp -a "$SETTINGS_FILE" "$SETTINGS_FILE.bak-$TS" 2>/dev/null || true
@@ -146,7 +162,6 @@ fi
 
 # Apply GTK settings (safe: no crash if gsettings unavailable)
 if command -v gsettings &>/dev/null; then
-  # Apply the rest via gsettings (no Omarchy equivalent: cursor, fonts, window theme)
   gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Classic" || true
   gsettings set org.gnome.desktop.interface cursor-size 16 || true
   gsettings set org.gnome.desktop.interface icon-theme "Colloid-Grey-Dark" || true
@@ -156,7 +171,6 @@ if command -v gsettings &>/dev/null; then
 fi
 
 # theme-set hook: re-apply companion configs when the theme is (re)selected
-# (after the first setup.sh run, switching themes and back needs no manual step)
 echo ":: theme-set hook"
 HOOK_DIR="$HOME/.config/omarchy/hooks/theme-set.d"
 mkdir -p "$HOOK_DIR"
