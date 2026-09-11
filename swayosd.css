@@ -1,27 +1,30 @@
+/* Theme OmarchyOS — SwayOSD styles
+   Applied by Omarchy to the volume/brightness OSD. */
+
 window {
-    background-color: rgba(18, 18, 18, 0.55);
-    border-radius: 12px;
-    border: 1px solid rgba(190, 190, 190, 0.12);
+  background-color: rgba(18, 18, 18, 0.55);
+  border-radius: 12px;
+  border: 1px solid rgba(190, 190, 190, 0.12);
 }
 
 label {
-    font-family: 'Inter';
-    font-size: 11pt;
-    color: #eaeaea;
+  font-family: 'Inter';
+  font-size: 11pt;
+  color: #eaeaea;
 }
 
 image {
-    color: #f2f2f2;
+  color: #f2f2f2;
 }
 
 progressbar, levelbar block, levelbar trough {
-    border-radius: 6px;
+  border-radius: 6px;
 }
 
 levelbar block {
-    background-color: #808080;
+  background-color: #808080;
 }
 
 levelbar trough {
-    background-color: #525252;
+  background-color: #525252;
 }
