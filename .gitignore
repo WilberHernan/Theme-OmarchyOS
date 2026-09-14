@@ -1,2 +1,6 @@
 # Local tooling artifacts (opencode skill registry cache)
 .atl/
+
+# Local indexes and SDD working artifacts
+.codegraph/
+openspec/
